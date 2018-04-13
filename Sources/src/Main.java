@@ -30,7 +30,8 @@ public class Main extends Application {
     Scene mainScene, gameScene, scoreScene;
 
     private char currentPlayer = 'X';
-    private Cell[][] cell = new Cell[1000][1000];
+    //MAX SIZE OF THE BOARD IS 30X30!!!!!!
+    private Cell[][] cell = new Cell[30][30];
     private Label statusMsg = new Label("X must play");
 
     @Override
@@ -78,7 +79,7 @@ public class Main extends Application {
         //--- GAME SCENE GRID PANE ---//
         GridPane mainGameGrid = new GridPane();
         GridPane gameGrid = new GridPane();
-        int size = 3;
+        int size = 30;
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
                 cell[i][j] = new Cell(size);
