@@ -1,3 +1,4 @@
+import Model.GeneticAlgorithm;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,21 +24,27 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.Collection;
+import java.util.Random;
 
 public class Main extends Application {
 
     Stage window;
     Scene mainScene, gameScene, scoreScene;
 
-    private char currentPlayer = 'X';
+    private char currentPlayer = '2';
     //MAX SIZE OF THE BOARD IS 30X30!!!!!!
     private Cell[][] cell = new Cell[30][30];
-    private Label statusMsg = new Label("X must play");
+    private Label statusMsg = new Label("O must play");
+    private int size = 3;
+    private String wejscie = "";
+    private int noMove = 0;
+    private boolean wygrana = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 
         window = primaryStage;
+
 
         //--- MAIN SCENE GRID PANE ---//
         GridPane grid = new GridPane();
@@ -70,7 +77,22 @@ public class Main extends Application {
         grid.add(victoryCondField, 1, 4);
 
         Button startBtn = new Button("Start Game");
-        startBtn.setOnAction(e -> window.setScene(gameScene));
+        startBtn.setOnAction(e -> {
+            window.setScene(gameScene);
+
+
+//            int ktory = 0;
+//            for(int i = 0; i < size; i++) {
+//                for(int j = 0; j < size; j++) {
+//                    cell[i][j] = new Cell(size);
+//                    ktory++;
+//                    if(wejscie.charAt(ktory) == '1');
+//                    cell[i][j].player = '1';
+//
+//
+//                }
+//            }
+        });
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.CENTER);
         hbBtn.getChildren().add(startBtn);
@@ -79,7 +101,7 @@ public class Main extends Application {
         //--- GAME SCENE GRID PANE ---//
         GridPane mainGameGrid = new GridPane();
         GridPane gameGrid = new GridPane();
-        int size = 30;
+
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size; j++) {
                 cell[i][j] = new Cell(size);
@@ -94,19 +116,25 @@ public class Main extends Application {
         mainGameGrid.add(borderPane, 0, 0);
 
         Button endGameBtn = new Button("End Game");
-        endGameBtn.setOnAction(e -> window.setScene(scoreScene));
+        endGameBtn.setOnAction(e -> {
+            window.setScene(mainScene);
+            for(int i = 0; i < size; i++) {
+                for(int j = 0; j < size; j++) {
+                    cell[i][j] = new Cell(size);
+                    gameGrid.getChildren().clear();
+                }
+            }
+            for(int i = 0; i < size; i++) {
+                for(int j = 0; j < size; j++) {
+                    cell[i][j] = new Cell(size);
+                    gameGrid.add(cell[i][j], j, i);
+                    cell[i][j].setNullPlayer();
+
+                }
+            }
+        });
         mainGameGrid.add(endGameBtn, 0, 1);
 
-        //--- SCORE SCENE GRID PANE ---//
-        GridPane scoreGrid = new GridPane();
-        scoreGrid.setAlignment(Pos.CENTER);
-        scoreGrid.setHgap(10);
-        scoreGrid.setVgap(10);
-        scoreGrid.setPadding(new Insets(25, 25, 25, 25));
-
-        Button backToMainMenuBtn = new Button("Back to main menu");
-        backToMainMenuBtn.setOnAction(e -> window.setScene(mainScene));
-        scoreGrid.add(backToMainMenuBtn, 0, 0);
 
 
 
@@ -119,7 +147,6 @@ public class Main extends Application {
 
         gameScene = new Scene(mainGameGrid, 600, 600);
 
-        scoreScene = new Scene(scoreGrid, 500, 300);
 
         window.setScene(mainScene);
         window.setTitle("BIAI - TicTacToe Game");
@@ -137,46 +164,176 @@ public class Main extends Application {
         return true;
     }
 
+    public boolean isBoardEmpty(int size) {
+        for(int i = 0; i < size; i++) {
+            for(int j = 0; j < size; j++) {
+                if(cell[i][j].getPlayer() != ' ') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean hasWon(char player, int size){
+        for (int i = 0; i < size; i++){
+            if(cell[i][0].getPlayer() == player && cell[i][1].getPlayer() == player && cell[i][2].getPlayer() == player)
+                return true;
+        }
+        for (int i = 0; i < size; i++){
+            if(cell[0][i].getPlayer() == player && cell[1][i].getPlayer() == player && cell[2][i].getPlayer() == player)
+                return true;
+        }
+        if(cell[0][0].getPlayer() == player && cell[1][1].getPlayer() == player && cell[2][2].getPlayer() == player)
+            return true;
+        if(cell[0][2].getPlayer() == player && cell[1][1].getPlayer() == player && cell[2][0].getPlayer() == player)
+            return true;
+
+        return false;
+    }
+
+    public void generujWejscie(){
+        int iloscRuchow = 0;
+        wejscie = "";
+        for(int i = 0; i < size; i++)
+            for(int j = 0; j < size; j++)
+            {
+
+                if(cell[i][j].getPlayer() == ' ')
+                    wejscie += '0';
+                else {
+                    wejscie += cell[i][j].getPlayer();
+                    iloscRuchow++;
+                }
+            }
+
+            wejscie += iloscRuchow;
+    }
+
+    public boolean generujPierwszyRuch(int comFirstMove){
+
+        int ktory = 0;
+        for(int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                ktory++;
+                if(ktory == comFirstMove) {
+                    if (cell[i][j].getPlayer() != ' ') {
+                        return false;
+                    } else {
+                        cell[i][j].setPlayer('1');
+                        generujWejscie();
+                        return true;
+                    }
+                }
+            }
+        }
+            return true;
+    }
+
+    public void dodajRuchNaPlansze(String board){
+        //int pos = 0;
+        for(int i = 0; i < size*size; i++) {
+            if(board.charAt(i) != wejscie.charAt(i))
+                generujPierwszyRuch(i+1);
+        }
+        //System.out.println(pos);
+    }
+
 
 
     public class Cell extends Pane {
-        private char player = ' ';
+        public char player = ' ';
+
 
         public Cell(int size) {
             setStyle("-fx-border-color: black");
             this.setPrefSize(700/size, 700/size);
-            this.setOnMouseClicked(e -> handleClick());
+            this.setOnMouseClicked(e -> {
+                if(!wygrana)
+                    handleClick(size);
+            });
         }
 
-        private void handleClick(){
-            if(player == ' '  && currentPlayer != ' '){
-                setPlayer(currentPlayer);
+        private void handleClick(int size) {
+            noMove++;
+
+
+                if (player == ' ' && currentPlayer != ' ') {
+                    setPlayer(currentPlayer);
+                    generujWejscie();
+                }
 
                 //tutaj sprawdzanie wygranej
+            if(sprawdzWygrana(size)) return;
 
 
-                currentPlayer = (currentPlayer == 'x') ? '0' : 'X';
+            if(noMove == 1){
+                    Random rand = new Random();
+                    int comFirstMove = rand.nextInt(8);
+
+                    while(!generujPierwszyRuch(comFirstMove)) {
+                        comFirstMove = rand.nextInt(8);
+                    }
+                    currentPlayer = (currentPlayer == '1') ? '2' : '1';
+                    statusMsg.setText(currentPlayer + " must play");
+                }else {
+
+                    //ruch kompa
+                    System.out.println(wejscie);
+                    GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
+                    String board = geneticAlgorithm.start();
+                    System.out.println(board);
+                    dodajRuchNaPlansze(board);
+
+
+                if(sprawdzWygrana(size)) return;
+            }
+            System.out.println(wejscie);
+        }
+
+        private boolean sprawdzWygrana(int size) {
+            if (hasWon(currentPlayer, size)) {
+                if(currentPlayer == '1')
+                    statusMsg.setText("X won!");
+                else
+                    statusMsg.setText("O won!");
+                currentPlayer = ' ';
+                wygrana = true;
+                return true;
+            } else if (isBoardFull(size)) {
+                statusMsg.setText("Draw!");
+                currentPlayer = ' ';
+                wygrana = true;
+                return true;
+            } else {
+                currentPlayer = (currentPlayer == '1') ? '2' : '1';
                 statusMsg.setText(currentPlayer + " must play");
+                return false;
             }
         }
+
 
         public char getPlayer(){
             return player;
         }
 
+        public void setNullPlayer() {
+            player = ' ';
+        }
+
         public void setPlayer(char c) {
             player = c;
-            if(player == 'X') {
-                Line line1 = new Line(10, this.getHeight() - 10, this.getWidth() - 10, this.getHeight() - 10);
+            if(player == '1') {
+                Line line1 = new Line(10, 10, this.getWidth() - 10, this.getHeight() - 10);
                 line1.endXProperty().bind(this.widthProperty().subtract(10));
                 line1.endYProperty().bind(this.heightProperty().subtract(10));
 
-                Line line2 = new Line(10, 10, this.getWidth() - 10, this.getHeight() - 10);
+                Line line2 = new Line(10, this.getHeight() - 10, this.getWidth() - 10, 10);
                 line2.endXProperty().bind(this.widthProperty().subtract(10));
                 line2.startYProperty().bind(this.heightProperty().subtract(10));
 
                 getChildren().addAll(line1, line2);
-            } else if(player == 'Y') {
+            } else if(player == '2') {
                 Ellipse ellipse = new Ellipse(this.getWidth() / 2, this.getHeight()/2, this.getWidth() / 2 - 10, this.getHeight() / 2 - 10);
 
                 ellipse.centerXProperty().bind(this.widthProperty().divide(2));
@@ -184,7 +341,7 @@ public class Main extends Application {
                 ellipse.radiusXProperty().bind(this.widthProperty().divide(2).subtract(10));
                 ellipse.radiusYProperty().bind(this.heightProperty().divide(2).subtract(10));
                 ellipse.setStroke(Color.BLACK);
-                ellipse.setFill(Color.BLUE);
+                ellipse.setFill(Color.color(1,1,1,1));
 
                 getChildren().add(ellipse);
             }
