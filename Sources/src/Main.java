@@ -1,12 +1,7 @@
 import Model.GeneticAlgorithm;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -21,10 +16,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.awt.*;
-import java.util.Collection;
-import java.util.Random;
 
 public class Main extends Application {
 
@@ -210,13 +201,13 @@ public class Main extends Application {
             wejscie += iloscRuchow;
     }
 
-    public boolean generujPierwszyRuch(int comFirstMove){
+    public boolean GenerujRuch(int comMove){
 
         int ktory = 0;
         for(int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 ktory++;
-                if(ktory == comFirstMove) {
+                if(ktory == comMove) {
                     if (cell[i][j].getPlayer() != ' ') {
                         return false;
                     } else {
@@ -234,7 +225,7 @@ public class Main extends Application {
         //int pos = 0;
         for(int i = 0; i < size*size; i++) {
             if(board.charAt(i) != wejscie.charAt(i))
-                generujPierwszyRuch(i+1);
+                GenerujRuch(i+1);
         }
         //System.out.println(pos);
     }
@@ -266,18 +257,6 @@ public class Main extends Application {
                 //tutaj sprawdzanie wygranej
             if(sprawdzWygrana(size)) return;
 
-
-            if(noMove == 1){
-                    Random rand = new Random();
-                    int comFirstMove = rand.nextInt(8);
-
-                    while(!generujPierwszyRuch(comFirstMove)) {
-                        comFirstMove = rand.nextInt(8);
-                    }
-                    currentPlayer = (currentPlayer == '1') ? '2' : '1';
-                    statusMsg.setText(currentPlayer + " must play");
-                }else {
-
                     //ruch kompa
                     System.out.println(wejscie);
                     GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
@@ -287,7 +266,7 @@ public class Main extends Application {
 
 
                 if(sprawdzWygrana(size)) return;
-            }
+//            }
             System.out.println(wejscie);
         }
 
