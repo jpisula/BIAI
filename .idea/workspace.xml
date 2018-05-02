@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="327" column="5" lean-forward="true" selection-start-line="327" selection-start-column="5" selection-end-line="327" selection-end-column="5" />
+            <state relative-caret-position="-13">
+              <caret line="254" column="17" lean-forward="true" selection-start-line="254" selection-start-column="17" selection-end-line="254" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#9558#9559#0" expanded="true" />
@@ -33,20 +33,50 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/src/Controller/Controller.java">
+      <file leaf-file-name="GeneticAlgorithm.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="17">
+              <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GeneticAlgorithm.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
+      <file leaf-file-name="Fitness.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
+            <state relative-caret-position="204">
+              <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Chromosome.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/src/Model/Chromosome.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1308">
+              <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mutation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/src/Model/Mutation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
               <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AllBoards.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-969">
+              <caret line="30" column="38" lean-forward="true" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,12 +96,12 @@
         <option value="$PROJECT_DIR$/Sources/src/Model/AllBoardsx.java" />
         <option value="$PROJECT_DIR$/Sources/src/Model/AllBoard.java" />
         <option value="$PROJECT_DIR$/Sources/src/Model/Chromosome.java" />
-        <option value="$PROJECT_DIR$/Sources/src/Model/Fitness.java" />
         <option value="$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java" />
         <option value="$PROJECT_DIR$/Sources/src/Model/Mutation.java" />
         <option value="$PROJECT_DIR$/Sources/src/Model/AllBoards.java" />
         <option value="$PROJECT_DIR$/Sources/src/Model/Main.java" />
         <option value="$PROJECT_DIR$/Sources/src/Main.java" />
+        <option value="$PROJECT_DIR$/Sources/src/Model/Fitness.java" />
       </list>
     </option>
   </component>
@@ -214,12 +244,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1525239544380</updated>
-      <workItem from="1525239547872" duration="10227000" />
+      <workItem from="1525239547872" duration="11550000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10227000" />
+    <option name="totallyTimeSpent" value="11550000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -288,44 +318,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3124">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Chromosome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1308">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Mutation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2121">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -415,10 +407,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Mutation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="327" column="5" lean-forward="true" selection-start-line="327" selection-start-column="5" selection-end-line="327" selection-end-column="5" />
+        <state relative-caret-position="-13">
+          <caret line="254" column="17" lean-forward="true" selection-start-line="254" selection-start-column="17" selection-end-line="254" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9558#9559#0" expanded="true" />
@@ -428,6 +427,37 @@
             <element signature="e#10862#10863#0" expanded="true" />
             <element signature="e#10890#10891#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Chromosome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1308">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-969">
+          <caret line="30" column="38" lean-forward="true" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
         </state>
       </provider>
     </entry>

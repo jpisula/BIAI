@@ -106,6 +106,7 @@ public class Fitness {
         for (int i=0;i<population.size();i++) {
             String chromosome = population.get(i); //pobranie chromosomu
             int result = checkGameState(all.getLastBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
+            //int result = checkGameState(all.getFirstBoard(chromosome));
             list.add(Integer.toString(result));
         }
         //zliczenie ile jest '0', ile '5', ile '10'
