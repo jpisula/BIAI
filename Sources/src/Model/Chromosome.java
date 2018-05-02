@@ -1,4 +1,5 @@
 package Model;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -9,7 +10,7 @@ public class Chromosome {
     private Mutation mutation;
     private AllBoards all;
 
-    public Chromosome (int game, int rad, AllBoards boards) {
+    public Chromosome(int game, int rad, AllBoards boards) {
         gameFields = game;
         RADIX = rad;
         mutation = new Mutation();
@@ -18,6 +19,7 @@ public class Chromosome {
 
     /**
      * Tworzy liste mozliwych ruchow i potem losuje jeden z nich. Zwraca dana strategie ruchu. Dla ruchu komputera wstawia '1'.
+     *
      * @param stateNumber
      * @param allBoards
      * @return
@@ -27,12 +29,12 @@ public class Chromosome {
         String actualStateString = allBoards.get(stateNumber);
         char[] actualState = actualStateString.toCharArray();
         int filledFields = Character.getNumericValue(actualStateString.charAt(gameFields));
-        ArrayList<String>list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
 
         for (int i = 0; i < gameFields; i++) {
             if (actualState[i] == '0') {
                 actualState[i] = '1';
-                actualState[gameFields] = Character.forDigit(filledFields + 1,RADIX);
+                actualState[gameFields] = Character.forDigit(filledFields + 1, RADIX);
                 list.add(String.copyValueOf(actualState));
                 actualState[i] = '0';
             }
@@ -41,7 +43,7 @@ public class Chromosome {
         Random generator = new Random();
         int choice = generator.nextInt(listSize);
 
-        if(mutation.mutation())
+        if (mutation.mutation())
             choice = generator.nextInt(listSize);
 
         actualStateString = list.get(choice);
@@ -51,21 +53,22 @@ public class Chromosome {
 
     /**
      * Tworzy liste mozliwych ruchow i potem losuje jeden z nich. Zwraca dana strategie ruchu. Dla ruchu gracza wstawia '2'.
+     *
      * @param stateNumber
      * @param allBoards
      * @return
      */
-    private int getNextPlayerMove(int stateNumber, ArrayList<String>allBoards) {
+    private int getNextPlayerMove(int stateNumber, ArrayList<String> allBoards) {
         int gameStrategy;
 
         String actualStateString = allBoards.get(stateNumber);
         char[] actualState = actualStateString.toCharArray();
         int filledFields = Character.getNumericValue(actualStateString.charAt(gameFields));
-        ArrayList<String>list = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < gameFields; i++) {
             if (actualState[i] == '0') {
                 actualState[i] = '2';
-                actualState[gameFields] = Character.forDigit(filledFields + 1,RADIX);
+                actualState[gameFields] = Character.forDigit(filledFields + 1, RADIX);
                 list.add(String.copyValueOf(actualState));
                 actualState[i] = '0';
             }
@@ -75,7 +78,7 @@ public class Chromosome {
         Random generator = new Random();
         int choice = generator.nextInt(listSize);
 
-        if(mutation.mutation())
+        if (mutation.mutation())
             choice = generator.nextInt(listSize);
 
         actualStateString = list.get(choice);
@@ -86,6 +89,7 @@ public class Chromosome {
 
     /**
      * Generuje chromosom.
+     *
      * @param stateNumber
      * @return
      */
@@ -97,9 +101,9 @@ public class Chromosome {
         String actualState = (String) allBoards.get(stateNumber);
         filledFields = actualState.charAt(gameFields);
 
-        for (int i=0;i<(gameFields-Character.getNumericValue(filledFields));i+=2) {
-            int indexComputer = getNextComputerMove(stateNumber,allBoards);
-            int indexPlayer = getNextPlayerMove(indexComputer,allBoards);
+        for (int i = 0; i < (gameFields - Character.getNumericValue(filledFields)); i += 2) {
+            int indexComputer = getNextComputerMove(stateNumber, allBoards);
+            int indexPlayer = getNextPlayerMove(indexComputer, allBoards);
             chromosome.append(Integer.toString(indexComputer));
             chromosome.append(' ');
             chromosome.append(Integer.toString(indexPlayer));

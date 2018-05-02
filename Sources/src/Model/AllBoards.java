@@ -13,6 +13,7 @@ public class AllBoards {
 
     /**
      * Class constructor
+     *
      * @param game
      * @param rad
      */
@@ -20,25 +21,27 @@ public class AllBoards {
         gameFields = game;
         RADIX = rad;
         allBoards = new ArrayList<>();
-        combinations = (int) pow(3,gameFields);
+        combinations = (int) pow(3, gameFields);
     }
 
     /**
      * Tworzy tablice strategii.
+     *
      * @return
      */
     public void getAllBoards() { //metoda tworzaca vector stanow gry - wszystkie mozliwe kombinacje
         String board;
 
-        for(int i = 0; i < combinations; ++i) {
+        for (int i = 0; i < combinations; ++i) {
             board = ConvertPermutationToString(i);
-            if ( !board.isEmpty())
+            if (!board.isEmpty())
                 allBoards.add(ConvertPermutationToString(i));
         }
     }
 
     /**
      * Metoda zwracajaca liste mozliwych kombinacji
+     *
      * @return
      */
     public ArrayList<String> getList() {
@@ -47,6 +50,7 @@ public class AllBoards {
 
     /**
      * Generuje kolejna kombinacje mozliwych ruchow.
+     *
      * @param permutation
      * @return
      */
@@ -59,29 +63,27 @@ public class AllBoards {
         int oCount = 0;
         int filledFields;
 
-        while ( permutation > 0 )
-        {
-            switch ( permutation %3 )
-            {
+        while (permutation > 0) {
+            switch (permutation % 3) {
                 case 0:
                     break;
                 case 1:
-                    boardC[counter] = '1'; // O = 1
+                    boardC[counter] = '1';
                     oCount++;
                     break;
                 case 2:
-                    boardC[counter] = '2'; // X = 2
+                    boardC[counter] = '2';
                     xCount++;
                     break;
             }
             counter++;
-            permutation = permutation/3;
+            permutation = permutation / 3;
         }
         filledFields = oCount + xCount; //dodanie 10 cyfry oznaczajcej liczbe wypelnionych pol
-        boardC[gameFields] = Character.forDigit(filledFields,RADIX);
+        boardC[gameFields] = Character.forDigit(filledFields, RADIX);
         board = String.valueOf(boardC);
 
-        if ( abs( xCount - oCount ) > 1 )
+        if (abs(xCount - oCount) > 1)
             board = "";
 
         return board;
@@ -89,6 +91,7 @@ public class AllBoards {
 
     /**
      * Zwraca numer strategii.
+     *
      * @param board
      * @return
      */
@@ -99,6 +102,7 @@ public class AllBoards {
 
     /**
      * Metoda zwracajaca stan gry, ktory nalezy wprowadzic na plansze.
+     *
      * @param strategy
      * @return
      */
@@ -106,15 +110,15 @@ public class AllBoards {
 
         int index = strategy.indexOf(' ');
         String temp = "";
-        for (int i = 0; i < index;i++) {
+        for (int i = 0; i < index; i++) {
             temp += strategy.charAt(i);
         }
-        String actualStateString = allBoards.get(Integer.parseInt(temp));
-        return actualStateString;
+        return allBoards.get(Integer.parseInt(temp));
     }
 
     /**
      * Metoda zwracajaca stan gry, ktory nalezy przeanalizowac pod katem wygranej.
+     *
      * @param strategy
      * @return
      */
@@ -122,22 +126,23 @@ public class AllBoards {
 
         int index = strategy.lastIndexOf(' ');
         String temp = "";
-        for (int i = index + 1; i < strategy.length();i++) {
+        for (int i = index + 1; i < strategy.length(); i++) {
             temp += strategy.charAt(i);
         }
-        String actualStateString = allBoards.get(Integer.parseInt(temp));
-        return actualStateString;
+        return allBoards.get(Integer.parseInt(temp));
     }
 
     /**
      * Metoda wybierajaca strategie, ktora uzyskala najwieksza ilosc punktow. Zwraca numer strategii.
+     *
      * @param list
      * @return
      */
-    public String getBestResult(ArrayList<String> list) {
+    public String getBestResult(ArrayList<String> list, Fitness fit) {
 
         String nameS, numberS, nameMax = "";
         Integer spaceIndex, numberMax = 0;
+        boolean end = false;
 
         for (int i = 0; i < list.size(); i++) {
 
@@ -145,46 +150,56 @@ public class AllBoards {
             numberS = "";
             String data = list.get(i);
             spaceIndex = data.indexOf(" ");
-            for (int j=0;j<spaceIndex;j++) //wyodrebnienie "kolumn" stringa pobranego z listy
+            for (int j = 0; j < spaceIndex; j++) //wyodrebnienie "kolumn" stringa pobranego z listy
                 nameS += data.charAt(j); //strategia
-            for (int j=spaceIndex + 1;j<data.length();j++)
+            for (int j = spaceIndex + 1; j < data.length(); j++)
                 numberS += data.charAt(j); //liczba punktow
 
-            if (Integer.parseInt(numberS) > numberMax) {
-                numberMax = Integer.parseInt(numberS);
-                nameMax = nameS;
-                nameMax += " ";
+            if (end == false) {
+                if ((Integer.parseInt(numberS) > numberMax)) {
+                    numberMax = Integer.parseInt(numberS);
+                    nameMax = nameS;
+                    nameMax += " ";
+                }
             }
+            if (end == false) {
+                boolean test = fit.checkFirstBoard(String.valueOf(getFirstBoard(nameS += ' ')));
+                if (test) {
+                    end = true;
+                    nameMax = nameS;
+                    //System.out.println("Sprawdzenie: " + nameS + " - " + String.valueOf(getFirstBoard(nameS += ' ')) + ": " + numberS);
+                }
+            }
+           // System.out.println(nameS + " - " + String.valueOf(getFirstBoard(nameS+=' ')) + ": " + numberS);
         }
-
-        String result = String.valueOf(getFirstBoard(nameMax));
-        return result;
+        return String.valueOf(getFirstBoard(nameMax));
     }
 
     /**
      * Metoda zlicza punkty za plansze dla kazdego ruchu (pierwszy gen w chromosomie) i zwraca ten z najwieksza iloscia punktow.
      * Zwraca plansze, ktora nalezy przekazac do gry.
+     *
      * @param population
      * @return
      */
-    public String getBestBoard (ArrayList<String>population, Fitness fit) {
-        ArrayList<String>list = new ArrayList<>(); //lista zawierajaca kolejne strategie wraz z przyznana iloscia punktow
-        ArrayList<String>endingList = new ArrayList<>(); //skrocona wersja wczesniejszej listy. Zawiera strategie z juz zsumowanymi punktami
+    public String getBestBoard(ArrayList<String> population, Fitness fit) {
+        ArrayList<String> list = new ArrayList<>(); //lista zawierajaca kolejne strategie wraz z przyznana iloscia punktow
+        ArrayList<String> endingList = new ArrayList<>(); //skrocona wersja wczesniejszej listy. Zawiera strategie z juz zsumowanymi punktami
         int spaceIndex, index = -1;
 
-        for (int i=0;i<population.size();i++) {
+        for (int i = 0; i < population.size(); i++) {
             String chromosome = population.get(i); //pobranie chromosomu
-            int result = fit.checkGameState(getFirstBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
+            int result = fit.checkGameState(getLastBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
             list.add(getStrategy(getFirstBoard(chromosome)) + " " + Integer.toString(result));
         }
 
-        for (int i=0;i<list.size();i++) {
+        for (int i = 0; i < list.size(); i++) {
             String data = list.get(i);
             spaceIndex = data.indexOf(" ");
-            String name="", numberNew="", numberOld="", nameTest="";
-            for (int j=0;j<spaceIndex;j++) //wyodrebnienie "kolumn" stringa pobranego z listy
+            String name = "", numberNew = "", numberOld = "", nameTest = "";
+            for (int j = 0; j < spaceIndex; j++) //wyodrebnienie "kolumn" stringa pobranego z listy
                 name += data.charAt(j);
-            for (int j=spaceIndex + 1;j<data.length();j++)
+            for (int j = spaceIndex + 1; j < data.length(); j++)
                 numberNew += data.charAt(j);
 
             //pobranie indeksu elementu, jesli juz jest w liscie
@@ -205,10 +220,10 @@ public class AllBoards {
                 }
             }
             //odpowiednie dodanie nowych danych do uproszczonej listy lub "zmodyfikowanie" elementów
-            if(index >= 0) {
+            if (index >= 0) {
                 data = endingList.get(index);
                 spaceIndex = data.indexOf(" ");
-                for (int j = spaceIndex + 1;j < data.length(); j++) //pobranie starej liczby
+                for (int j = spaceIndex + 1; j < data.length(); j++) //pobranie starej liczby
                     numberOld += data.charAt(j);
 
                 Integer number = Integer.parseInt(numberOld);
@@ -221,7 +236,6 @@ public class AllBoards {
                 endingList.add(data);
         }
         //pobranie z listy endingList numeru strategi, ktora uzyskala najwiecej punktow
-        String result = getBestResult(endingList);
-        return result;
+        return getBestResult(endingList, fit);
     }
 }

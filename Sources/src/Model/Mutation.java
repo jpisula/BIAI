@@ -1,4 +1,5 @@
 package Model;
+
 import java.util.Random;
 
 public class Mutation {
@@ -13,6 +14,7 @@ public class Mutation {
 
     /**
      * Metoda sprawdzajaca czy ma nastapic mutacja genu.
+     *
      * @return - wartosc bool - czy mutacja ma sie wydarzyc
      */
     public boolean mutation() {

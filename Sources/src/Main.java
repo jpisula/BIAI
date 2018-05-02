@@ -256,7 +256,6 @@ public class Main extends Application {
 
                 //tutaj sprawdzanie wygranej
             if(sprawdzWygrana(size)) return;
-
                     //ruch kompa
                     System.out.println(wejscie);
                     GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
@@ -267,7 +266,7 @@ public class Main extends Application {
 
                 if(sprawdzWygrana(size)) return;
 //            }
-            System.out.println(wejscie);
+            //System.out.println(wejscie);
         }
 
         private boolean sprawdzWygrana(int size) {

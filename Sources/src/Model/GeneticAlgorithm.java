@@ -1,4 +1,5 @@
 package Model;
+
 import java.util.ArrayList;
 
 public class GeneticAlgorithm {
@@ -33,12 +34,12 @@ public class GeneticAlgorithm {
         int stateNumber = all.getStrategy(actualBoard); //aktualny stan planszy wyrazony poprzez numer strategii
 
         //petla tworzaca populacje chromosomow
-        for (int i = 0; i< populationSize; i++) {
+        for (int i = 0; i < populationSize; i++) {
             String chromosome = chrom.createChromosome(stateNumber); //metoda generujaca chromosom
             population.add(chromosome);//vector chromosomow
         }
         //zmniejszenie populacji o te najgorsze chromosomy
-        population = fitness.modifyPopulation(population);
+        //population = fitness.modifyPopulation(population);
         //wywolanie krzyzowania
 
         //kolejne wywolanie funkcji fitness i tak iles tam razy powtorzenie krzyzowania (albo moze jeden?)
