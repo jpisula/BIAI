@@ -10,7 +10,7 @@ public class GeneticAlgorithm {
     private AllBoards all;
     private Chromosome chrom;
     private Fitness fitness;
-    private int populationSize = 500;
+    private int populationSize = 1000;
 
     /**
      * Class constructor

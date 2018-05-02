@@ -11,13 +11,15 @@ public class Fitness {
     private int draw;
     private int lose;
     private AllBoards all;
+    private boolean winner;
+    private boolean looser;
 
     public Fitness(int game, int raw, AllBoards boards) {
         gameFields = game;
         rawFields = raw;
         computerWin = 3;
         playerWin = 6;
-        win = 10;
+        win = 100;
         draw = 5;
         lose = 0;
         all = boards;
@@ -30,65 +32,75 @@ public class Fitness {
      * @return
      */
     public int checkGameState(String str) {
+        winner = false;
+        looser = false;
         int suma = 0;
-        int koniec;
         //sprawdzenie rzedow
         for (int j=0;j<gameFields;j+=rawFields) {
             for (int i = 0; i < rawFields; i++) {
                 suma += Integer.parseInt(String.valueOf(str.charAt(i + j)));
             }
-            if (suma == computerWin) {
-                koniec = win;
-                return koniec;
-            }
-            if (suma == playerWin) {
-                koniec = lose;
-                return koniec;
-            }
+            if (suma == computerWin)
+                winner = true;
+            if (suma == playerWin)
+                looser = true;
             suma = 0;
         }
+        if (looser)
+            return lose;
+        if(winner)
+            return win;
+        winner = false;
+        looser = false;
+
         //sprawdzenie kolumn
         for (int j=0;j<rawFields;j++) {
-            for (int i = 0; i < rawFields; i+=rawFields) {
+            for (int i = 0; i < gameFields; i+=rawFields) {
                 suma += Integer.parseInt(String.valueOf(str.charAt(i + j)));
             }
-            if (suma == computerWin) {
-                koniec = win;
-                return koniec;
-            }
-            if (suma == playerWin) {
-                koniec = lose;
-                return koniec;
-            }
+            if (suma == computerWin)
+                winner = true;
+            if (suma == playerWin)
+                looser = true;
             suma = 0;
         }
+        suma = 0;
+        if (looser)
+            return lose;
+        if(winner)
+            return win;
+        winner = false;
+        looser = false;
         //sprawdzenie na ukos
         for (int i=0;i<gameFields;i+=(rawFields+1)) {
             suma += Integer.parseInt(String.valueOf(str.charAt(i)));
-            if (suma == computerWin) {
-                koniec = win;
-                return koniec;
-            }
-            if (suma == playerWin) {
-                koniec = lose;
-                return koniec;
-            }
         }
+            if (suma == computerWin)
+                winner = true;
+            if (suma == playerWin)
+                looser = true;
+
+        if (looser)
+            return lose;
+        if(winner)
+            return win;
+        winner = false;
+        looser = false;
         suma = 0;
         //sparwdzenie drugiego ukosu
         for (int i=rawFields-1;i<=(gameFields - rawFields);i+=(rawFields-1)) {
             suma += Integer.parseInt(String.valueOf(str.charAt(i)));
-            if (suma == computerWin) {
-                koniec = win;
-                return koniec;
-            }
-            if (suma == playerWin) {
-                koniec = lose;
-                return koniec;
-            }
         }
-        koniec = draw;
-        return koniec;
+            if (suma == computerWin)
+                winner = true;
+            if (suma == playerWin)
+                looser = true;
+
+        if (looser)
+            return lose;
+        if(winner)
+            return win;
+        return draw;
     }
 
 
@@ -106,7 +118,6 @@ public class Fitness {
         for (int i=0;i<population.size();i++) {
             String chromosome = population.get(i); //pobranie chromosomu
             int result = checkGameState(all.getLastBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
-            //int result = checkGameState(all.getFirstBoard(chromosome));
             list.add(Integer.toString(result));
         }
         //zliczenie ile jest '0', ile '5', ile '10'

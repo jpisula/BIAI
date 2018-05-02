@@ -3,11 +3,13 @@ package Model;
 import java.util.ArrayList;
 
 import static java.lang.StrictMath.abs;
+import static java.lang.StrictMath.pow;
 
 public class AllBoards {
     private int gameFields;
     private int RADIX;
     private ArrayList<String> allBoards;
+    private int combinations;
 
     /**
      * Class constructor
@@ -18,6 +20,7 @@ public class AllBoards {
         gameFields = game;
         RADIX = rad;
         allBoards = new ArrayList<>();
+        combinations = (int) pow(3,gameFields);
     }
 
     /**
@@ -27,7 +30,7 @@ public class AllBoards {
     public void getAllBoards() { //metoda tworzaca vector stanow gry - wszystkie mozliwe kombinacje
         String board;
 
-        for(int i = 0; i < 19683; ++i) { //3^9 = 19683
+        for(int i = 0; i < combinations; ++i) {
             board = ConvertPermutationToString(i);
             if ( !board.isEmpty())
                 allBoards.add(ConvertPermutationToString(i));
@@ -171,7 +174,7 @@ public class AllBoards {
 
         for (int i=0;i<population.size();i++) {
             String chromosome = population.get(i); //pobranie chromosomu
-            int result = fit.checkGameState(getLastBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
+            int result = fit.checkGameState(getFirstBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
             list.add(getStrategy(getFirstBoard(chromosome)) + " " + Integer.toString(result));
         }
 
