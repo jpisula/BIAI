@@ -18,8 +18,8 @@ public class Fitness {
     private boolean block;
 
     //zmienne dla sprawdzenie pierwszej planszy
-    private int win3 = 2;
-    private int win5 = 4;
+    private int win3 = 3;
+    private int win4 = 4;
 
     public Fitness(int game, int raw, AllBoards boards) {
         gameFields = game;
@@ -34,11 +34,75 @@ public class Fitness {
     }
 
     /**
-     *
+     * Sprawdzenie czy na danej planszy nie nastapila wygrana komputera. Jesli tak (111) zwrocenie true.
+     * Sprawdza czy w rzedzie, kolumnie, skosie jest sytuacja 111 czyli nie ma wolnych miejsc, a zapelnione spelniony
+     * jest warunek wygranie komputera 111 suma pol w danym rzedzie itd. jest rowna 3.
      * @param str
      * @return
      */
-    public boolean checkFirstBoard(String str) {
+    public boolean checkWinner(String str) {
+        int suma = 0;
+        int count = 0;
+        //sparwdzenie rzedow
+        for (int j = 0; j < gameFields; j += rawFields) {
+            for (int i = 0; i < rawFields; i++) {
+                suma += Integer.parseInt(String.valueOf(str.charAt(i + j)));
+                if (Integer.parseInt(String.valueOf(str.charAt(i+j))) == 0)
+                    count++;
+            }
+            if (count == 0 && suma == win3)
+                return true;
+
+            count = 0;
+            suma = 0;
+        }
+
+        //sprawdzenie kolumn
+        for (int j = 0; j < rawFields; j++) {
+            for (int i = 0; i < gameFields; i += rawFields) {
+                suma += Integer.parseInt(String.valueOf(str.charAt(i + j)));
+                if (Integer.parseInt(String.valueOf(str.charAt(i+j))) == 0)
+                    count++;
+            }
+            if (count == 0 && suma == win3)
+                return true;
+
+            count = 0;
+            suma = 0;
+        }
+
+        //sprawdzenie pierwszego ukosu
+        for (int i = 0; i < gameFields; i += (rawFields + 1)) {
+            suma += Integer.parseInt(String.valueOf(str.charAt(i)));
+            if (Integer.parseInt(String.valueOf(str.charAt(i))) == 0)
+                count++;
+        }
+        if (count == 0 && suma == win3)
+            return true;
+
+        count = 0;
+        suma = 0;
+        //sprawdzenie drugiego ukosu
+        for (int i = rawFields - 1; i <= (gameFields - rawFields); i += (rawFields - 1)) {
+            suma += Integer.parseInt(String.valueOf(str.charAt(i)));
+            if (Integer.parseInt(String.valueOf(str.charAt(i))) == 0)
+                count++;
+        }
+        if (count == 0 && suma == win3)
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Metoda sparwdzajaca czy w danej tablicy moze nastapic zablokowanie ruchu gracza.
+     * Jesli jest sytuacja 220 to oznacza ze moglo wystapic zablokowanie - zwrocenie false.
+     * Sprawdza czy suma pol w danym rzedzie itd. jest rowna 4 i czy jest jedno wolne pole. Jelsi tak jest oznacza to
+     * ze moglo wystapic zablokowanie.
+     * @param str
+     * @return
+     */
+    public boolean checkBlockade(String str) {
 
         int suma = 0;
         int count = 0;
@@ -49,10 +113,9 @@ public class Fitness {
                 if (Integer.parseInt(String.valueOf(str.charAt(i+j))) == 0)
                     count++;
             }
-            if (count == 1 && (suma == win3 || suma == win5)) {
-                //System.out.println("If przy rzedzie "+ j);
+            if (count == 1 && suma == win4)
                 return false;
-            }
+
             count = 0;
             suma = 0;
         }
@@ -65,10 +128,9 @@ public class Fitness {
                     count++;
             }
 
-            if (count == 1 && (suma == win3 || suma == win5)) {
-                //System.out.println("If przy kolumnie "+ j);
+            if (count == 1 && suma == win4)
                 return false;
-            }
+
             count = 0;
             suma = 0;
         }
@@ -80,10 +142,9 @@ public class Fitness {
                 count++;
         }
 
-        if (count == 1 && (suma == win3 || suma == win5)) {
-           // System.out.println("If przy ukosie w prawo");
+        if (count == 1 && suma == win4)
             return false;
-        }
+
         count = 0;
         suma = 0;
         //sprawdzenie drugiego ukosu
@@ -92,11 +153,9 @@ public class Fitness {
             if (Integer.parseInt(String.valueOf(str.charAt(i))) == 0)
                 count++;
         }
-        if (count == 1 && (suma == win3 || suma == win5)) {
-            //System.out.println("If przy ukosie w lewo");
+        if (count == 1 && suma == win4)
             return false;
-        }
-        System.out.println("Przeszlo wszystko");
+
         return true;
     }
 
@@ -139,16 +198,6 @@ public class Fitness {
         if (looser || (winner && looser))
             return lose;
 
-/*
-        if (block && winner)
-            return win;
-        if (block && !winner)
-            return 5*win;
-        if (winner && !looser)
-            return win;
-        if (looser || (winner && looser))
-            return lose;
-*/
 
         winner = false;
         looser = false;

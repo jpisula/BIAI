@@ -39,7 +39,7 @@ public class GeneticAlgorithm {
             population.add(chromosome);//vector chromosomow
         }
         //zmniejszenie populacji o te najgorsze chromosomy
-        //population = fitness.modifyPopulation(population);
+        population = fitness.modifyPopulation(population);
         //wywolanie krzyzowania
 
         //kolejne wywolanie funkcji fitness i tak iles tam razy powtorzenie krzyzowania (albo moze jeden?)

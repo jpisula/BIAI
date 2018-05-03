@@ -133,16 +133,17 @@ public class AllBoards {
     }
 
     /**
-     * Metoda wybierajaca strategie, ktora uzyskala najwieksza ilosc punktow. Zwraca numer strategii.
+     * Metoda wybierajaca strategie, ktora uzyskala najwieksza ilosc punktow. Metoda wywoluje takze kolejna funkcje
+     * fitnessowa sparwdzajaca czy nie nastapila wygrana lub blokada. Zwraca numer strategii.
      *
      * @param list
      * @return
      */
     public String getBestResult(ArrayList<String> list, Fitness fit) {
 
-        String nameS, numberS, nameMax = "";
-        Integer spaceIndex, numberMax = 0;
-        boolean end = false;
+        String nameS, numberS, nameMax = "", nameWinner="", nameBlockade="", filled;
+        Integer spaceIndex, numberMax = 0, fields;
+        boolean winner = false, blockade = false;
 
         for (int i = 0; i < list.size(); i++) {
 
@@ -150,28 +151,51 @@ public class AllBoards {
             numberS = "";
             String data = list.get(i);
             spaceIndex = data.indexOf(" ");
+
             for (int j = 0; j < spaceIndex; j++) //wyodrebnienie "kolumn" stringa pobranego z listy
                 nameS += data.charAt(j); //strategia
             for (int j = spaceIndex + 1; j < data.length(); j++)
                 numberS += data.charAt(j); //liczba punktow
 
-            if (end == false) {
+            //pobranie liczby zajetych pol
+            String temp = String.valueOf(getFirstBoard(nameS += ' '));
+            filled = String.valueOf(temp.charAt(9));
+            fields = Integer.parseInt(filled);
+
+            if (!winner) {
                 if ((Integer.parseInt(numberS) > numberMax)) {
                     numberMax = Integer.parseInt(numberS);
                     nameMax = nameS;
                     nameMax += " ";
                 }
             }
-            if (end == false) {
-                boolean test = fit.checkFirstBoard(String.valueOf(getFirstBoard(nameS += ' ')));
+            //sprawdzenie czy nie ma sytuacji wygranej dla komputera
+            if (list.size() > 3 && !winner && fields > 2) {
+                boolean test = fit.checkWinner(String.valueOf(getFirstBoard(nameS += ' ')));
                 if (test) {
-                    end = true;
+                    nameWinner = nameS;
                     nameMax = nameS;
-                    //System.out.println("Sprawdzenie: " + nameS + " - " + String.valueOf(getFirstBoard(nameS += ' ')) + ": " + numberS);
+                    winner = true;
+                    //System.out.println("Wybranie wygranej: " + nameS + " - " + String.valueOf(getFirstBoard(nameS += ' ')) + ": " + numberS);
                 }
             }
-           // System.out.println(nameS + " - " + String.valueOf(getFirstBoard(nameS+=' ')) + ": " + numberS);
+            if (list.size() > 3 && !winner && !blockade && fields > 2) {
+                boolean test = fit.checkBlockade(String.valueOf(getFirstBoard(nameS += ' ')));
+                if (test) {
+                    nameBlockade = nameS;
+                    nameMax = nameS;
+                    blockade = true;
+                    //System.out.println("Wybranie blokady: " + nameS + " - " + String.valueOf(getFirstBoard(nameS += ' ')) + ": " + numberS);
+                }
+            }
+
+           //System.out.println(nameS + " - " + String.valueOf(getFirstBoard(nameS+=' ')) + ": " + numberS);
         }
+        if (winner)
+            nameMax = nameWinner;
+        else if(blockade)
+            nameMax = nameBlockade;
+
         return String.valueOf(getFirstBoard(nameMax));
     }
 
