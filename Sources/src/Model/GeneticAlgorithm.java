@@ -12,6 +12,7 @@ public class GeneticAlgorithm {
     private Chromosome chrom;
     private Fitness fitness;
     private int populationSize = 1000;
+    private Crossover cross;
 
     /**
      * Class constructor
@@ -40,12 +41,12 @@ public class GeneticAlgorithm {
         }
         //zmniejszenie populacji o te najgorsze chromosomy
         population = fitness.modifyPopulation(population);
-        //wywolanie krzyzowania
+        //zainicjowanie i rozpoczecie krzyzowania
+        //samo krzyzowanie bedzie raczej wywolywane z funkcji all.getBestBoard() - i tam bedzie petelka
 
-        //kolejne wywolanie funkcji fitness i tak iles tam razy powtorzenie krzyzowania (albo moze jeden?)
-
-        //zwrocenie pierwszego elementu vectora populacji - przekazanie pierwszego stanu planszy z chromosomu
-        //wywolac na samym koncu
+        cross = new Crossover(population);
+        cross.startCrossover();
+        population = cross.getPopulation();
 
         //ostateczny wynik - pierwsze 9 cyfr to stan planszy, ostatnia ilosc juz wypelnionych pol. Potrzebne do algorytmu.
         String resultBoard = all.getBestBoard(population, fitness);

@@ -113,7 +113,11 @@ public class AllBoards {
         for (int i = 0; i < index; i++) {
             temp += strategy.charAt(i);
         }
-        return allBoards.get(Integer.parseInt(temp));
+        try {
+            return allBoards.get(Integer.parseInt(temp));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }return allBoards.get(Integer.parseInt(temp));
     }
 
     /**
@@ -170,7 +174,7 @@ public class AllBoards {
                 }
             }
             //sprawdzenie czy nie ma sytuacji wygranej dla komputera
-            if (list.size() > 3 && !winner && fields > 2) {
+            if (list.size() > 3 && !winner && fields > 2 && fields < 7) {
                 boolean test = fit.checkWinner(String.valueOf(getFirstBoard(nameS += ' ')));
                 if (test) {
                     nameWinner = nameS;
@@ -179,7 +183,7 @@ public class AllBoards {
                     //System.out.println("Wybranie wygranej: " + nameS + " - " + String.valueOf(getFirstBoard(nameS += ' ')) + ": " + numberS);
                 }
             }
-            if (list.size() > 3 && !winner && !blockade && fields > 2) {
+            if (list.size() > 3 && !winner && !blockade && fields > 2 && fields < 7) {
                 boolean test = fit.checkBlockade(String.valueOf(getFirstBoard(nameS += ' ')));
                 if (test) {
                     nameBlockade = nameS;
