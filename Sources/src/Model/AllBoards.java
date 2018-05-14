@@ -113,11 +113,7 @@ public class AllBoards {
         for (int i = 0; i < index; i++) {
             temp += strategy.charAt(i);
         }
-        try {
-            return allBoards.get(Integer.parseInt(temp));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }return allBoards.get(Integer.parseInt(temp));
+        return allBoards.get(Integer.parseInt(temp));
     }
 
     /**
@@ -145,7 +141,7 @@ public class AllBoards {
      */
     public String getBestResult(ArrayList<String> list, Fitness fit) {
 
-        String nameS, numberS, nameMax = "", nameWinner="", nameBlockade="", filled;
+        String nameS, numberS, nameMax = "", nameWinner = "", nameBlockade = "", filled;
         Integer spaceIndex, numberMax = 0, fields;
         boolean winner = false, blockade = false;
 
@@ -192,12 +188,12 @@ public class AllBoards {
                     //System.out.println("Wybranie blokady: " + nameS + " - " + String.valueOf(getFirstBoard(nameS += ' ')) + ": " + numberS);
                 }
             }
-
-           //System.out.println(nameS + " - " + String.valueOf(getFirstBoard(nameS+=' ')) + ": " + numberS);
+            //System.out.println(nameS + " - " + String.valueOf(getFirstBoard(nameS+=' ')) + ": " + numberS);
         }
+
         if (winner)
             nameMax = nameWinner;
-        else if(blockade)
+        else if (blockade)
             nameMax = nameBlockade;
 
         return String.valueOf(getFirstBoard(nameMax));
@@ -218,7 +214,7 @@ public class AllBoards {
         for (int i = 0; i < population.size(); i++) {
             String chromosome = population.get(i); //pobranie chromosomu
             int result = fit.checkGameState(getLastBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
-            list.add(getStrategy(getFirstBoard(chromosome)) + " " + Integer.toString(result));
+            list.add(getStrategy(getFirstBoard(chromosome)) + " " + Integer.toString(result)); //lista zawirajaca strategie i ocene ostatecznego wyniku
         }
 
         for (int i = 0; i < list.size(); i++) {

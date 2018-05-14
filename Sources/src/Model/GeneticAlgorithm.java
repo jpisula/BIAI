@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GeneticAlgorithm {
 
@@ -13,6 +14,7 @@ public class GeneticAlgorithm {
     private Fitness fitness;
     private int populationSize = 1000;
     private Crossover cross;
+    private int crossOverNumber = 1;
 
     /**
      * Class constructor
@@ -41,12 +43,18 @@ public class GeneticAlgorithm {
         }
         //zmniejszenie populacji o te najgorsze chromosomy
         population = fitness.modifyPopulation(population);
-        //zainicjowanie i rozpoczecie krzyzowania
-        //samo krzyzowanie bedzie raczej wywolywane z funkcji all.getBestBoard() - i tam bedzie petelka
 
-        cross = new Crossover(population);
-        cross.startCrossover();
-        population = cross.getPopulation();
+        //*********************************************************************************
+        //zainicjowanie i rozpoczecie krzyzowania
+        //TODO - dorobic warunek sprawdzajacy kiedy nalezy przestac robic krzyzowanie, czyli znaleziono juz idealny chromosom
+        //TODO - np przeniesc to do getBestBoard i tam to robic az funkcja fitnessowa nie zwroci jakiego fajnego wyniku
+        for (int i=0; i<crossOverNumber;i++) {
+            cross = new Crossover(population);
+            cross.startCrossover();
+            population = new ArrayList<String>(cross.getPopulation());
+        }
+
+        //*********************************************************************************
 
         //ostateczny wynik - pierwsze 9 cyfr to stan planszy, ostatnia ilosc juz wypelnionych pol. Potrzebne do algorytmu.
         String resultBoard = all.getBestBoard(population, fitness);

@@ -25,9 +25,10 @@ public class Crossover {
 
     /**
      * Konstruktor - inicjalizacja zmiennych.
+     *
      * @param pop
      */
-    public Crossover (ArrayList<String> pop) {
+    public Crossover(ArrayList<String> pop) {
         this.population = pop;
         this.generator = new Random();
         newPopulation = new ArrayList<>();
@@ -37,6 +38,7 @@ public class Crossover {
     /**
      * Metoda odseparowuje jedna wylosowana strategie, przeszukuje liste w poszukiwaniu kolejnego wystapienia. Jesli znajdzie
      * wykona krzyzowanie. Z 2 rodzicow utworza sie 2 dzieci.
+     *
      * @param elem
      */
     private void doCrossover(String elem, int tabIndex1) {
@@ -48,13 +50,13 @@ public class Crossover {
         ArrayList<Integer> indexList2 = new ArrayList<>();
         ArrayList<String> list = new ArrayList<>();
 
-        for (Integer i = 0; i < elem.length();i++) {
+        for (Integer i = 0; i < elem.length(); i++) {
             if (elem.charAt(i) == ' ') {
                 count++;
                 indexList1.add(i);
             }
         }
-        int rand = generator.nextInt(count - 1);
+        int rand = generator.nextInt(count - 2); //-2 aby nie wylosowac ostatniej spacji
 
         int parent1Start1 = indexList1.get(rand) + 1;
         int parent1Start2 = indexList1.get(rand + 1);
@@ -64,7 +66,7 @@ public class Crossover {
         String strategy2;
 
         //wyszukanie chromosomu ktory zawiera pobrana strategie
-        for (int i = 0;i<population.size();i++) {
+        for (int i = 0; i < population.size(); i++) {
             if (i != tabIndex1) {
                 if (population.get(i).contains(parentToSearch)) {
                     list.add(population.get(i)); //lista zawiera kolejnego rodzica
@@ -81,8 +83,8 @@ public class Crossover {
             tabIndex2 = indexList2.get(rand);
             int parent2Start1 = strategy2.indexOf(parentToSearch); //indeks od ktorego zaczyna sie parent1 w 2 rodzicu
             parent2Start1++;
-            child1 = elem.substring(0, parent1Start1) + strategy2.substring(parent2Start1, strategy2.length() - 1);
-            child2 = strategy2.substring(0, parent2Start1 - 1) + elem.substring(parent1Start2 - parent1.length() - 1, elem.length() - 1);
+            child1 = elem.substring(0, parent1Start1) + strategy2.substring(parent2Start1, strategy2.length());
+            child2 = strategy2.substring(0, parent2Start1 - 1) + elem.substring(parent1Start2 - parent1.length() - 1, elem.length());
 
             //usuniecie z populacji rodzicow i zastapienie nimi dziecmi
             population.remove(tabIndex1);
@@ -118,13 +120,15 @@ public class Crossover {
                         rand = 0;
                     doCrossover(population.get(rand), rand);
                 }
-            }
+            } else
+                newPopulation = new ArrayList<String>(population);
         } else
-            newPopulation = population;
+            newPopulation = new ArrayList<String>(population);
     }
 
     /**
      * Metoda zwracajaca zmieniona liste populacji
+     *
      * @return
      */
     public ArrayList<String> getPopulation() {
