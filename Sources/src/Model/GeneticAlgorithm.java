@@ -14,7 +14,7 @@ public class GeneticAlgorithm {
     private Fitness fitness;
     private int populationSize = 1000;
     private Crossover cross;
-    private int crossOverNumber = 1;
+    private int crossOverNumber = 10;
 
     /**
      * Class constructor
@@ -29,6 +29,10 @@ public class GeneticAlgorithm {
         fitness = new Fitness(gameFields, rawFields, all);
     }
 
+    /**
+     * Metoda zarzadzajaca calym algorytmem genetycznym.
+     * @return
+     */
     public String start() {
         all.getAllBoards(); // tworzenie tablicy zawierajacej niecale 9000 kombinacji
         ArrayList<String> population = new ArrayList<>();
@@ -44,19 +48,8 @@ public class GeneticAlgorithm {
         //zmniejszenie populacji o te najgorsze chromosomy
         population = fitness.modifyPopulation(population);
 
-        //*********************************************************************************
-        //zainicjowanie i rozpoczecie krzyzowania
-        //TODO - dorobic warunek sprawdzajacy kiedy nalezy przestac robic krzyzowanie, czyli znaleziono juz idealny chromosom
-        //TODO - np przeniesc to do getBestBoard i tam to robic az funkcja fitnessowa nie zwroci jakiego fajnego wyniku
-        for (int i=0; i<crossOverNumber;i++) {
-            cross = new Crossover(population);
-            cross.startCrossover();
-            population = new ArrayList<String>(cross.getPopulation());
-        }
-
-        //*********************************************************************************
-
         //ostateczny wynik - pierwsze 9 cyfr to stan planszy, ostatnia ilosc juz wypelnionych pol. Potrzebne do algorytmu.
+        //w wywolanej metodzie nastepuje krzyzowanie, ocena chromosomow i wybor najlepszej opcji
         String resultBoard = all.getBestBoard(population, fitness);
         return resultBoard;
     }
