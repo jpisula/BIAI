@@ -143,52 +143,51 @@ public class AllBoards {
      */
     public String getBestResult(ArrayList<String> list, ArrayList<Float> grades, Fitness fit) {
 
-        String nameS, numberS, nameMax = "", nameWinner = "", nameBlockade = "", filled;
+        String nameS, nameMax = "",  filled;
         Integer spaceIndex, fields;
         Float numberMax = 0.0f;
-        boolean winner = false, blockade = false;
 
         for (int i = 0; i < list.size(); i++) {
             nameS = "";
-            numberS = "";
             String data = list.get(i);
             spaceIndex = data.indexOf(" ");
 
             for (int j = 0; j < spaceIndex; j++) //wyodrebnienie "kolumn" stringa pobranego z listy
                 nameS += data.charAt(j); //strategia
-            //for (int j = spaceIndex + 1; j < data.length(); j++)
-            //    numberS += data.charAt(j); //liczba punktow
 
             //pobranie liczby zajetych pol
             String temp = String.valueOf(getFirstBoard(nameS += ' '));
             filled = String.valueOf(temp.charAt(9));
             fields = Integer.parseInt(filled);
 
-            if ((grades.get(i) > numberMax)) {
+            if ((grades.get(i) > numberMax)) { //wybranie strategii z najlepszymi liczbami
                 numberMax = grades.get(i);
                 nameMax = nameS;
                 nameMax += " ";
             }
 
             //sprawdzenie czy nie ma sytuacji wygranej dla komputera
-            if (list.size() > 3 && fields > 2 && fields < 7) {
-                boolean test = fit.checkWinner(String.valueOf(getFirstBoard(nameS += ' ')));
-                if (test)
+            if (fields > 2) {
+                if (fit.checkWinner(String.valueOf(getFirstBoard(nameS += ' '))))
                     return String.valueOf(getFirstBoard(nameS));
             }
             //sprawdzenie czy nie ma sytuacji blokady
-            if (list.size() > 3 && !blockade && fields > 2 && fields < 7) {
-                boolean test = fit.checkBlockade(String.valueOf(getFirstBoard(nameS += ' ')));
-                if (test) {
-                    nameBlockade = nameS;
-                    nameMax = nameS;
-                    blockade = true;
+            if (fields > 2) {
+                int index = fit.checkBlockade(String.valueOf(getFirstBoard(nameS += ' ')));
+                if (index > -1) {
+                    for (int z = 0; z < list.size(); z++) {
+                        String name = "";
+                        data = list.get(z);
+                        spaceIndex = data.indexOf(" ");
+                        for (int j = 0; j < spaceIndex; j++) //wyodrebnienie "kolumn" stringa pobranego z listy
+                            name += data.charAt(j); //strategia
+                        temp = String.valueOf(getFirstBoard(name += ' '));
+                        if (temp.charAt(index) == '1')
+                            return temp;
+                    }
                 }
             }
         }
-        if (blockade)
-            nameMax = nameBlockade;
-
         return String.valueOf(getFirstBoard(nameMax));
     }
 
@@ -278,14 +277,15 @@ public class AllBoards {
             }
             for (int i = 0; i < grades.size(); i++) {
                 float numb = grades.get(i);
-                if (numb >= 9.2f) //sprawdzenie czy dana strategia nie uzyskala wyniku lepszego lub rownego 95% mozliwych do uzyskania punktow
+                if (numb >= 9.0f) //sprawdzenie czy dana strategia nie uzyskala wyniku lepszego lub rownego 90% mozliwych do uzyskania punktow
                     return getBestResult(endingList, grades, fit);
             }
             //krzyzowanie
             cross = new Crossover(population);
             cross.startCrossover();
-            population = new ArrayList<String>(cross.getPopulation());
-            population = fit.modifyPopulation(population);
+            population = new ArrayList<>(cross.getPopulation());
+            //population = fit.modifyPopulation(population);
+            ile++;
         }
         //pobranie z listy endingList numeru strategii, ktora uzyskala najwiecej punktow
         return getBestResult(endingList, grades, fit);

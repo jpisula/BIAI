@@ -31,8 +31,10 @@ public class Main extends Application {
     private int noMove = 0;
     private boolean wygrana = false;
 
+    private boolean chck1 = false, chck2 = false;
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         window = primaryStage;
 
@@ -55,8 +57,9 @@ public class Main extends Application {
         CheckBox playerVsComCheck = new CheckBox("Player VS. Computer");
         grid.add(playerVsComCheck, 0, 2);
         CheckBox comVsComCheck = new CheckBox("Computer VS. Computer");
-        grid.add(comVsComCheck, 1,2);
+        grid.add(comVsComCheck, 1, 2);
 
+        /*
         Label chooseSize = new Label("Choose size of the board: ");
         grid.add(chooseSize, 0, 3);
         TextField sizeField = new TextField();
@@ -66,23 +69,13 @@ public class Main extends Application {
         grid.add(chooseVictoryCond, 0, 4);
         TextField victoryCondField = new TextField();
         grid.add(victoryCondField, 1, 4);
+        */
 
         Button startBtn = new Button("Start Game");
         startBtn.setOnAction(e -> {
+            chck1 = playerVsComCheck.isSelected();
+            chck2 = comVsComCheck.isSelected();
             window.setScene(gameScene);
-
-
-//            int ktory = 0;
-//            for(int i = 0; i < size; i++) {
-//                for(int j = 0; j < size; j++) {
-//                    cell[i][j] = new Cell(size);
-//                    ktory++;
-//                    if(wejscie.charAt(ktory) == '1');
-//                    cell[i][j].player = '1';
-//
-//
-//                }
-//            }
         });
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.CENTER);
@@ -93,8 +86,8 @@ public class Main extends Application {
         GridPane mainGameGrid = new GridPane();
         GridPane gameGrid = new GridPane();
 
-        for(int i = 0; i < size; i++) {
-            for(int j = 0; j < size; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 cell[i][j] = new Cell(size);
                 gameGrid.add(cell[i][j], j, i);
             }
@@ -109,26 +102,21 @@ public class Main extends Application {
         Button endGameBtn = new Button("End Game");
         endGameBtn.setOnAction(e -> {
             window.setScene(mainScene);
-            for(int i = 0; i < size; i++) {
-                for(int j = 0; j < size; j++) {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
                     cell[i][j] = new Cell(size);
                     gameGrid.getChildren().clear();
                 }
             }
-            for(int i = 0; i < size; i++) {
-                for(int j = 0; j < size; j++) {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
                     cell[i][j] = new Cell(size);
                     gameGrid.add(cell[i][j], j, i);
                     cell[i][j].setNullPlayer();
-
                 }
             }
         });
         mainGameGrid.add(endGameBtn, 0, 1);
-
-
-
-
 
         //--- SETTING SCENES ---//
 
@@ -145,9 +133,9 @@ public class Main extends Application {
     }
 
     public boolean isBoardFull(int size) {
-        for(int i = 0; i < size; i++) {
-            for(int j = 0; j < size; j++) {
-                if(cell[i][j].getPlayer() == ' ') {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (cell[i][j].getPlayer() == ' ') {
                     return false;
                 }
             }
@@ -156,9 +144,9 @@ public class Main extends Application {
     }
 
     public boolean isBoardEmpty(int size) {
-        for(int i = 0; i < size; i++) {
-            for(int j = 0; j < size; j++) {
-                if(cell[i][j].getPlayer() != ' ') {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (cell[i][j].getPlayer() != ' ') {
                     return false;
                 }
             }
@@ -166,48 +154,46 @@ public class Main extends Application {
         return true;
     }
 
-    public boolean hasWon(char player, int size){
-        for (int i = 0; i < size; i++){
-            if(cell[i][0].getPlayer() == player && cell[i][1].getPlayer() == player && cell[i][2].getPlayer() == player)
+    public boolean hasWon(char player, int size) {
+        for (int i = 0; i < size; i++) {
+            if (cell[i][0].getPlayer() == player && cell[i][1].getPlayer() == player && cell[i][2].getPlayer() == player)
                 return true;
         }
-        for (int i = 0; i < size; i++){
-            if(cell[0][i].getPlayer() == player && cell[1][i].getPlayer() == player && cell[2][i].getPlayer() == player)
+        for (int i = 0; i < size; i++) {
+            if (cell[0][i].getPlayer() == player && cell[1][i].getPlayer() == player && cell[2][i].getPlayer() == player)
                 return true;
         }
-        if(cell[0][0].getPlayer() == player && cell[1][1].getPlayer() == player && cell[2][2].getPlayer() == player)
+        if (cell[0][0].getPlayer() == player && cell[1][1].getPlayer() == player && cell[2][2].getPlayer() == player)
             return true;
-        if(cell[0][2].getPlayer() == player && cell[1][1].getPlayer() == player && cell[2][0].getPlayer() == player)
+        if (cell[0][2].getPlayer() == player && cell[1][1].getPlayer() == player && cell[2][0].getPlayer() == player)
             return true;
 
         return false;
     }
 
-    public void generujWejscie(){
+    public void generujWejscie() {
         int iloscRuchow = 0;
         wejscie = "";
-        for(int i = 0; i < size; i++)
-            for(int j = 0; j < size; j++)
-            {
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++) {
 
-                if(cell[i][j].getPlayer() == ' ')
+                if (cell[i][j].getPlayer() == ' ')
                     wejscie += '0';
                 else {
                     wejscie += cell[i][j].getPlayer();
                     iloscRuchow++;
                 }
             }
-
-            wejscie += iloscRuchow;
+        wejscie += iloscRuchow;
     }
 
-    public boolean GenerujRuch(int comMove){
+    public boolean GenerujRuch(int comMove) {
 
         int ktory = 0;
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 ktory++;
-                if(ktory == comMove) {
+                if (ktory == comMove) {
                     if (cell[i][j].getPlayer() != ' ') {
                         return false;
                     } else {
@@ -218,18 +204,15 @@ public class Main extends Application {
                 }
             }
         }
-            return true;
+        return true;
     }
 
-    public void dodajRuchNaPlansze(String board){
-        //int pos = 0;
-        for(int i = 0; i < size*size; i++) {
-            if(board.charAt(i) != wejscie.charAt(i))
-                GenerujRuch(i+1);
+    public void dodajRuchNaPlansze(String board) {
+        for (int i = 0; i < size * size; i++) {
+            if (board.charAt(i) != wejscie.charAt(i))
+                GenerujRuch(i + 1);
         }
-        //System.out.println(pos);
     }
-
 
 
     public class Cell extends Pane {
@@ -238,40 +221,38 @@ public class Main extends Application {
 
         public Cell(int size) {
             setStyle("-fx-border-color: black");
-            this.setPrefSize(700/size, 700/size);
+            this.setPrefSize(700 / size, 700 / size);
             this.setOnMouseClicked(e -> {
-                if(!wygrana)
+                if (!wygrana)
                     handleClick(size);
             });
         }
 
         private void handleClick(int size) {
             noMove++;
+            if (player == ' ' && currentPlayer != ' ') {
+                setPlayer(currentPlayer);
+                generujWejscie();
+            }
 
+            //tutaj sprawdzanie wygranej
+            if (sprawdzWygrana(size))
+                return;
 
-                if (player == ' ' && currentPlayer != ' ') {
-                    setPlayer(currentPlayer);
-                    generujWejscie();
-                }
-
-                //tutaj sprawdzanie wygranej
-            if(sprawdzWygrana(size)) return;
-                    //ruch kompa
-                    System.out.println(wejscie);
-                    GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
-                    String board = geneticAlgorithm.start();
-                    System.out.println(board);
-                    dodajRuchNaPlansze(board);
-
-
-                if(sprawdzWygrana(size)) return;
-//            }
-            //System.out.println(wejscie);
+            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
+            try {
+                String board = geneticAlgorithm.start();
+                dodajRuchNaPlansze(board);
+                if (sprawdzWygrana(size)) return;
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
+                alert.showAndWait();
+            }
         }
 
         private boolean sprawdzWygrana(int size) {
             if (hasWon(currentPlayer, size)) {
-                if(currentPlayer == '1')
+                if (currentPlayer == '1')
                     statusMsg.setText("X won!");
                 else
                     statusMsg.setText("O won!");
@@ -291,7 +272,7 @@ public class Main extends Application {
         }
 
 
-        public char getPlayer(){
+        public char getPlayer() {
             return player;
         }
 
@@ -301,7 +282,7 @@ public class Main extends Application {
 
         public void setPlayer(char c) {
             player = c;
-            if(player == '1') {
+            if (player == '1') {
                 Line line1 = new Line(10, 10, this.getWidth() - 10, this.getHeight() - 10);
                 line1.endXProperty().bind(this.widthProperty().subtract(10));
                 line1.endYProperty().bind(this.heightProperty().subtract(10));
@@ -311,15 +292,15 @@ public class Main extends Application {
                 line2.startYProperty().bind(this.heightProperty().subtract(10));
 
                 getChildren().addAll(line1, line2);
-            } else if(player == '2') {
-                Ellipse ellipse = new Ellipse(this.getWidth() / 2, this.getHeight()/2, this.getWidth() / 2 - 10, this.getHeight() / 2 - 10);
+            } else if (player == '2') {
+                Ellipse ellipse = new Ellipse(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2 - 10, this.getHeight() / 2 - 10);
 
                 ellipse.centerXProperty().bind(this.widthProperty().divide(2));
                 ellipse.centerYProperty().bind(this.heightProperty().divide(2));
                 ellipse.radiusXProperty().bind(this.widthProperty().divide(2).subtract(10));
                 ellipse.radiusYProperty().bind(this.heightProperty().divide(2).subtract(10));
                 ellipse.setStroke(Color.BLACK);
-                ellipse.setFill(Color.color(1,1,1,1));
+                ellipse.setFill(Color.color(1, 1, 1, 1));
 
                 getChildren().add(ellipse);
             }

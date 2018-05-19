@@ -102,19 +102,23 @@ public class Fitness {
      * @param str
      * @return
      */
-    public boolean checkBlockade(String str) {
+    public int checkBlockade(String str) {
 
         int suma = 0;
         int count = 0;
+        int index = -1;
         //sparwdzenie rzedow
         for (int j = 0; j < gameFields; j += rawFields) {
             for (int i = 0; i < rawFields; i++) {
                 suma += Integer.parseInt(String.valueOf(str.charAt(i + j)));
-                if (Integer.parseInt(String.valueOf(str.charAt(i+j))) == 0)
+                if (Integer.parseInt(String.valueOf(str.charAt(i+j))) == 0) {
                     count++;
+                    if (count == 1)
+                        index = i+j;
+                }
             }
             if (count == 1 && suma == win4)
-                return false;
+                return index;
 
             count = 0;
             suma = 0;
@@ -126,10 +130,12 @@ public class Fitness {
                 suma += Integer.parseInt(String.valueOf(str.charAt(i + j)));
                 if (Integer.parseInt(String.valueOf(str.charAt(i+j))) == 0)
                     count++;
+                if (count == 1)
+                    index = i+j;
             }
 
             if (count == 1 && suma == win4)
-                return false;
+                return index;
 
             count = 0;
             suma = 0;
@@ -140,10 +146,12 @@ public class Fitness {
             suma += Integer.parseInt(String.valueOf(str.charAt(i)));
             if (Integer.parseInt(String.valueOf(str.charAt(i))) == 0)
                 count++;
+            if (count == 1)
+                index = i;
         }
 
         if (count == 1 && suma == win4)
-            return false;
+            return index;
 
         count = 0;
         suma = 0;
@@ -152,11 +160,13 @@ public class Fitness {
             suma += Integer.parseInt(String.valueOf(str.charAt(i)));
             if (Integer.parseInt(String.valueOf(str.charAt(i))) == 0)
                 count++;
+            if (count == 1)
+                index = i;
         }
         if (count == 1 && suma == win4)
-            return false;
+            return index;
 
-        return true;
+        return -1;
     }
 
     /**
@@ -184,19 +194,25 @@ public class Fitness {
             suma = 0;
         }
 
-
-        if (block && winner)
-            return win;
-        if (block && !winner)
-            return draw;
-        if (block && !looser)
+        if (looser)
+            return lose;
+        if (block)
             return draw;
         if (winner)
             return win;
-        if (winner && !looser)
-            return win;
-        if (looser || (winner && looser))
-            return lose;
+
+//        if (block && winner)
+//            return win;
+//        if (block && !winner)
+//            return draw;
+//        if (block && !looser)
+//            return draw;
+//        if (winner)
+//            return win;
+//        if (winner && !looser)
+//            return win;
+//        if (looser || (winner && looser))
+//            return lose;
 
 
         winner = false;
@@ -215,18 +231,25 @@ public class Fitness {
                 block = true;
             suma = 0;
         }
-        if (block && winner)
-            return win;
-        if (block && !winner)
-            return draw;
-        if (block && !looser)
+
+        if (looser)
+            return lose;
+        if (block)
             return draw;
         if (winner)
             return win;
-        if (winner && !looser)
-            return win;
-        if (looser || (winner && looser))
-            return lose;
+//        if (block && winner)
+//            return win;
+//        if (block && !winner)
+//            return draw;
+//        if (block && !looser)
+//            return draw;
+//        if (winner)
+//            return win;
+//        if (winner && !looser)
+//            return win;
+//        if (looser || (winner && looser))
+//            return lose;
 
         winner = false;
         looser = false;

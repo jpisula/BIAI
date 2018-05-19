@@ -13,8 +13,6 @@ public class GeneticAlgorithm {
     private Chromosome chrom;
     private Fitness fitness;
     private int populationSize = 1000;
-    private Crossover cross;
-    private int crossOverNumber = 10;
 
     /**
      * Class constructor
@@ -33,7 +31,7 @@ public class GeneticAlgorithm {
      * Metoda zarzadzajaca calym algorytmem genetycznym.
      * @return
      */
-    public String start() {
+    public String start() throws Exception {
         all.getAllBoards(); // tworzenie tablicy zawierajacej niecale 9000 kombinacji
         ArrayList<String> population = new ArrayList<>();
         //pobranie stringu, w ktorym jest aktualny stan planszy
@@ -50,7 +48,6 @@ public class GeneticAlgorithm {
 
         //ostateczny wynik - pierwsze 9 cyfr to stan planszy, ostatnia ilosc juz wypelnionych pol. Potrzebne do algorytmu.
         //w wywolanej metodzie nastepuje krzyzowanie, ocena chromosomow i wybor najlepszej opcji
-        String resultBoard = all.getBestBoard(population, fitness);
-        return resultBoard;
+        return all.getBestBoard(population, fitness);
     }
 }
