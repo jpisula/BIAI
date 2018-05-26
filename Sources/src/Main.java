@@ -228,7 +228,7 @@ public class Main extends Application {
             });
         }
 
-        private void handleClick(int size) {
+        private void handleClick(int size) { //dla trybu comp vs comp zmiany potrzebne w pliku Chromosome.java - wprowadzilem, ale trzeba potestowac
             noMove++;
             if (player == ' ' && currentPlayer != ' ') {
                 setPlayer(currentPlayer);

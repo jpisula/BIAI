@@ -109,7 +109,13 @@ public class Chromosome {
             chromosome.append(Integer.toString(indexPlayer));
             chromosome.append(' ');
             stateNumber = indexPlayer;
+            if (i+2 == gameFields) { //potrzebne do trybu komputer vs komputer
+                indexComputer = getNextComputerMove(stateNumber, allBoards);
+                chromosome.append(Integer.toString(indexComputer));
+                chromosome.append(' ');
+            }
         }
+
         return (String.valueOf(chromosome).trim());
     }
 }
