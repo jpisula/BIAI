@@ -1,5 +1,7 @@
 import Model.GeneticAlgorithm;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,16 +24,20 @@ public class Main extends Application {
     Stage window;
     Scene mainScene, gameScene, scoreScene;
 
-    private char currentPlayer = '2';
+    private char currentPlayer  = '2';
     //MAX SIZE OF THE BOARD IS 30X30!!!!!!
-    private Cell[][] cell = new Cell[30][30];
-    private Label statusMsg = new Label("O must play");
-    private int size = 3;
-    private String wejscie = "";
-    private int noMove = 0;
-    private boolean wygrana = false;
+    private Cell[][] cell       = new Cell[30][30];
+    private Label statusMsg     = new Label("O must play");
+    private int size            = 3;
+    private String wejscie      = "";
+    private int noMove          = 0;
+    private boolean wygrana     = false;
+    // zmienne potrzebne do checkboxa
+    private boolean chck1       = false;
+    private boolean chck2       = false;
 
-    private boolean chck1 = false, chck2 = false;
+    private RadioButton comVsComCheck;
+    private RadioButton playerVsComCheck;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -54,10 +60,37 @@ public class Main extends Application {
         Label chooseMode = new Label("Choose game mode: ");
         grid.add(chooseMode, 0, 1);
 
-        CheckBox playerVsComCheck = new CheckBox("Player VS. Computer");
+        final ToggleGroup group = new ToggleGroup();
+
+        playerVsComCheck = new RadioButton();
+        playerVsComCheck.setToggleGroup(group);
+        playerVsComCheck.setText("Player VS. Computer");
+        playerVsComCheck.setSelected(true);
+
+        comVsComCheck = new RadioButton();
+        comVsComCheck.setToggleGroup(group);
+        comVsComCheck.setText("Computer VS. Computer");
         grid.add(playerVsComCheck, 0, 2);
-        CheckBox comVsComCheck = new CheckBox("Computer VS. Computer");
         grid.add(comVsComCheck, 1, 2);
+
+//        CheckBox playerVsComCheck = new CheckBox("Player VS. Computer");
+//        grid.add(playerVsComCheck, 0, 2);
+//        CheckBox comVsComCheck = new CheckBox("Computer VS. Computer");
+//        grid.add(comVsComCheck, 1, 2);
+
+//        playerVsComCheck.selectedProperty().addListener((ov, old_val, new_val) -> {
+//            if(comVsComCheck.isSelected()) {
+//                comVsComCheck.setSelected(!comVsComCheck.isSelected());
+//                playerVsComCheck.setSelected(true);
+//            }
+//        });
+//
+//        comVsComCheck.selectedProperty().addListener((ov, old_val, new_val) -> {
+//            if(playerVsComCheck.isSelected()) {
+//                playerVsComCheck.setSelected(false);
+//                comVsComCheck.setSelected(!comVsComCheck.isSelected());
+//            }
+//        });
 
         /*
         Label chooseSize = new Label("Choose size of the board: ");
@@ -73,8 +106,8 @@ public class Main extends Application {
 
         Button startBtn = new Button("Start Game");
         startBtn.setOnAction(e -> {
-            chck1 = playerVsComCheck.isSelected();
-            chck2 = comVsComCheck.isSelected();
+//            chck1 = playerVsComCheck.isSelected();
+//            chck2 = comVsComCheck.isSelected();
             window.setScene(gameScene);
         });
         HBox hbBtn = new HBox(10);
@@ -229,24 +262,28 @@ public class Main extends Application {
         }
 
         private void handleClick(int size) { //dla trybu comp vs comp zmiany potrzebne w pliku Chromosome.java - wprowadzilem, ale trzeba potestowac
-            noMove++;
-            if (player == ' ' && currentPlayer != ' ') {
-                setPlayer(currentPlayer);
-                generujWejscie();
-            }
+            if(playerVsComCheck.isSelected()) {
+                noMove++;
+                if (player == ' ' && currentPlayer != ' ') {
+                    setPlayer(currentPlayer);
+                    generujWejscie();
+                }
 
-            //tutaj sprawdzanie wygranej
-            if (sprawdzWygrana(size))
-                return;
+                //tutaj sprawdzanie wygranej
+                if (sprawdzWygrana(size))
+                    return;
 
-            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
-            try {
-                String board = geneticAlgorithm.start();
-                dodajRuchNaPlansze(board);
-                if (sprawdzWygrana(size)) return;
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
-                alert.showAndWait();
+                GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
+                try {
+                    String board = geneticAlgorithm.start();
+                    dodajRuchNaPlansze(board);
+                    if (sprawdzWygrana(size)) return;
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
+                    alert.showAndWait();
+                }
+            } else if(comVsComCheck.isSelected()) {
+                // Tu kod z gry com vs com
             }
         }
 
