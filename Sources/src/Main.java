@@ -19,6 +19,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.concurrent.TimeUnit;
+
 public class Main extends Application {
 
     Stage window;
@@ -73,43 +75,12 @@ public class Main extends Application {
         grid.add(playerVsComCheck, 0, 2);
         grid.add(comVsComCheck, 1, 2);
 
-//        CheckBox playerVsComCheck = new CheckBox("Player VS. Computer");
-//        grid.add(playerVsComCheck, 0, 2);
-//        CheckBox comVsComCheck = new CheckBox("Computer VS. Computer");
-//        grid.add(comVsComCheck, 1, 2);
-
-//        playerVsComCheck.selectedProperty().addListener((ov, old_val, new_val) -> {
-//            if(comVsComCheck.isSelected()) {
-//                comVsComCheck.setSelected(!comVsComCheck.isSelected());
-//                playerVsComCheck.setSelected(true);
-//            }
-//        });
-//
-//        comVsComCheck.selectedProperty().addListener((ov, old_val, new_val) -> {
-//            if(playerVsComCheck.isSelected()) {
-//                playerVsComCheck.setSelected(false);
-//                comVsComCheck.setSelected(!comVsComCheck.isSelected());
-//            }
-//        });
-
-        /*
-        Label chooseSize = new Label("Choose size of the board: ");
-        grid.add(chooseSize, 0, 3);
-        TextField sizeField = new TextField();
-        grid.add(sizeField, 1, 3);
-
-        Label chooseVictoryCond = new Label("Choose victory condition: ");
-        grid.add(chooseVictoryCond, 0, 4);
-        TextField victoryCondField = new TextField();
-        grid.add(victoryCondField, 1, 4);
-        */
-
         Button startBtn = new Button("Start Game");
         startBtn.setOnAction(e -> {
 //            chck1 = playerVsComCheck.isSelected();
 //            chck2 = comVsComCheck.isSelected();
             window.setScene(gameScene);
-        });
+            });
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.CENTER);
         hbBtn.getChildren().add(startBtn);
@@ -125,6 +96,7 @@ public class Main extends Application {
                 gameGrid.add(cell[i][j], j, i);
             }
         }
+
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(gameGrid);
@@ -247,6 +219,28 @@ public class Main extends Application {
         }
     }
 
+    public boolean sprawdzWygrana(int size) {
+        if (hasWon(currentPlayer, size)) {
+            if (currentPlayer == '1')
+                statusMsg.setText("X won!");
+            else
+                statusMsg.setText("O won!");
+            currentPlayer = ' ';
+            wygrana = true;
+            return true;
+        } else if (isBoardFull(size)) {
+            statusMsg.setText("Draw!");
+            currentPlayer = ' ';
+            wygrana = true;
+            return true;
+        } else {
+            currentPlayer = (currentPlayer == '1') ? 'O' : 'X';
+            statusMsg.setText(currentPlayer + " must play");
+            currentPlayer = (currentPlayer == 'X') ? '1' : '2';
+            return false;
+        }
+    }
+
 
     public class Cell extends Pane {
         public char player = ' ';
@@ -282,53 +276,25 @@ public class Main extends Application {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
                     alert.showAndWait();
                 }
-            } else if(comVsComCheck.isSelected()) {
-                // Tu kod z gry com vs com
-                generujWejscie();
-                GeneticAlgorithm geneticAlgorithm1 = new GeneticAlgorithm(wejscie);
-                try {
-                    String board = geneticAlgorithm1.start();
-                    dodajRuchNaPlansze(board);
-                    if (sprawdzWygrana(size)) return;
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
-                    alert.showAndWait();
-                }
 
-                generujWejscie();
-                GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
-                try {
-                    String board = geneticAlgorithm.start();
-                    dodajRuchNaPlansze(board);
-                    if (sprawdzWygrana(size)) return;
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
-                    alert.showAndWait();
+            }
+            if(comVsComCheck.isSelected()){  //------------ ROZGRYWKA KOMPUTER VS KOMPUTER, trzeba kliknąć aby rozpocząć rozgrywke comp vs comp
+                while(!sprawdzWygrana(size)){
+                    generujWejscie();
+                    GeneticAlgorithm alg1 = new GeneticAlgorithm(wejscie);
+                    try {
+                        String board = alg1.start();
+                        dodajRuchNaPlansze(board);
+                        if (sprawdzWygrana(size)) return;
+                        TimeUnit.SECONDS.sleep(3);
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
+                        alert.showAndWait();
+                    }
+
                 }
             }
         }
-
-        private boolean sprawdzWygrana(int size) {
-            if (hasWon(currentPlayer, size)) {
-                if (currentPlayer == '1')
-                    statusMsg.setText("X won!");
-                else
-                    statusMsg.setText("O won!");
-                currentPlayer = ' ';
-                wygrana = true;
-                return true;
-            } else if (isBoardFull(size)) {
-                statusMsg.setText("Draw!");
-                currentPlayer = ' ';
-                wygrana = true;
-                return true;
-            } else {
-                currentPlayer = (currentPlayer == '1') ? '2' : '1';
-                statusMsg.setText(currentPlayer + " must play");
-                return false;
-            }
-        }
-
 
         public char getPlayer() {
             return player;

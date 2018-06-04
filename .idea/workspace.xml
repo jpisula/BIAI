@@ -18,11 +18,11 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="296" selection-start-line="296" selection-end-line="296" />
+            <state relative-caret-position="-7">
+              <caret line="270" column="21" selection-start-line="270" selection-start-column="21" selection-end-line="270" selection-end-column="21" />
               <folding>
-                <element signature="e#11497#11498#0" expanded="true" />
-                <element signature="e#11534#11535#0" expanded="true" />
+                <element signature="e#11817#11818#0" expanded="true" />
+                <element signature="e#11845#11846#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -31,7 +31,7 @@
       <file leaf-file-name="GeneticAlgorithm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
+            <state relative-caret-position="578">
               <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
@@ -40,7 +40,7 @@
       <file leaf-file-name="AllBoards.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
+            <state relative-caret-position="612">
               <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -93,6 +93,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -121,8 +123,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -221,26 +221,27 @@
       <workItem from="1525693599358" duration="276000" />
       <workItem from="1527484907054" duration="2396000" />
       <workItem from="1528096079046" duration="1081000" />
+      <workItem from="1528098141900" duration="1627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18105000" />
+    <option name="totallyTimeSpent" value="19732000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49804688" weight="0.32965517" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49739584" weight="0.32965517" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5110677" side_tool="true" visible="true" weight="0.28965518" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51627606" side_tool="true" visible="true" weight="0.25931033" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48502603" weight="0.25931033" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48372397" weight="0.25931033" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -251,7 +252,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48893228" weight="0.28965518" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48828125" weight="0.28965518" />
       <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.3294271" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -274,21 +275,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Sources/src/Main.java</url>
-          <line>285</line>
-          <properties />
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Sources/src/Main.java</url>
-          <line>286</line>
-          <properties />
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -328,8 +315,8 @@
         <state relative-caret-position="5049">
           <caret line="297" column="25" lean-forward="true" selection-start-line="297" selection-start-column="25" selection-end-line="297" selection-end-column="25" />
           <folding>
-            <element signature="e#11497#11498#0" expanded="true" />
-            <element signature="e#11534#11535#0" expanded="true" />
+            <element signature="e#11817#11818#0" expanded="true" />
+            <element signature="e#11845#11846#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -377,8 +364,8 @@
         <state relative-caret-position="1887">
           <caret line="111" column="43" lean-forward="true" selection-start-line="111" selection-start-column="43" selection-end-line="111" selection-end-column="43" />
           <folding>
-            <element signature="e#11497#11498#0" expanded="true" />
-            <element signature="e#11534#11535#0" expanded="true" />
+            <element signature="e#11817#11818#0" expanded="true" />
+            <element signature="e#11845#11846#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -426,8 +413,8 @@
         <state relative-caret-position="4029">
           <caret line="254" column="17" selection-start-line="254" selection-start-column="17" selection-end-line="254" selection-end-column="17" />
           <folding>
-            <element signature="e#11497#11498#0" expanded="true" />
-            <element signature="e#11534#11535#0" expanded="true" />
+            <element signature="e#11817#11818#0" expanded="true" />
+            <element signature="e#11845#11846#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -539,9 +526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="157" selection-start-line="157" selection-end-line="157" />
-          <folding>
-            <element signature="e#4603#4604#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -563,10 +547,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="145" selection-start-line="145" selection-end-line="145" />
-          <folding>
-            <element signature="e#3921#3922#0" expanded="true" />
-            <element signature="e#3962#3963#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,9 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="168" selection-start-line="168" selection-end-line="168" />
-          <folding>
-            <element signature="e#5979#5980#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -598,10 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
           <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="e#6461#6462#0" expanded="true" />
-            <element signature="e#6511#6512#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -644,10 +617,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="197" selection-start-line="197" selection-end-line="197" />
-          <folding>
-            <element signature="e#4362#4363#0" expanded="true" />
-            <element signature="e#4393#4394#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -655,16 +624,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-151">
           <caret line="2494" selection-start-line="2494" selection-end-line="2494" />
-          <folding>
-            <element signature="e#66617#66618#0" expanded="true" />
-            <element signature="e#66663#66664#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
+        <state relative-caret-position="612">
           <caret line="39" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -674,18 +639,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
+        <state relative-caret-position="578">
           <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="296" selection-start-line="296" selection-end-line="296" />
+        <state relative-caret-position="-7">
+          <caret line="270" column="21" selection-start-line="270" selection-start-column="21" selection-end-line="270" selection-end-column="21" />
           <folding>
-            <element signature="e#11497#11498#0" expanded="true" />
-            <element signature="e#11534#11535#0" expanded="true" />
+            <element signature="e#11817#11818#0" expanded="true" />
+            <element signature="e#11845#11846#0" expanded="true" />
           </folding>
         </state>
       </provider>
