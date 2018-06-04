@@ -18,15 +18,11 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="285" column="42" selection-start-line="285" selection-start-column="42" selection-end-line="285" selection-end-column="42" />
+            <state relative-caret-position="257">
+              <caret line="296" selection-start-line="296" selection-end-line="296" />
               <folding>
-                <element signature="e#10359#10360#0" expanded="true" />
-                <element signature="e#10396#10397#0" expanded="true" />
-                <element signature="e#10435#10436#0" expanded="true" />
-                <element signature="e#10471#10472#0" expanded="true" />
-                <element signature="e#11401#11402#0" expanded="true" />
-                <element signature="e#11429#11430#0" expanded="true" />
+                <element signature="e#11497#11498#0" expanded="true" />
+                <element signature="e#11534#11535#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -35,44 +31,8 @@
       <file leaf-file-name="GeneticAlgorithm.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Fitness.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/src/Controller/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chromosome.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/src/Model/Chromosome.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mutation.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Sources/src/Model/Mutation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            <state relative-caret-position="172">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
         </entry>
@@ -80,8 +40,8 @@
       <file leaf-file-name="AllBoards.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+            <state relative-caret-position="155">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,17 +85,14 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1049" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,6 +121,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,16 +219,16 @@
       <workItem from="1525432153776" duration="668000" />
       <workItem from="1525554803132" duration="724000" />
       <workItem from="1525693599358" duration="276000" />
-      <workItem from="1527484907054" duration="2222000" />
+      <workItem from="1527484907054" duration="2396000" />
+      <workItem from="1528096079046" duration="1081000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16850000" />
+    <option name="totallyTimeSpent" value="18105000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -276,11 +236,11 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.51432294" side_tool="true" visible="true" weight="0.25931033" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5110677" side_tool="true" visible="true" weight="0.28965518" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4856771" visible="true" weight="0.25931033" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48502603" weight="0.25931033" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -291,9 +251,9 @@
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48958334" weight="0.28965518" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48893228" weight="0.28965518" />
       <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.3294271" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -317,121 +277,21 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Sources/src/Main.java</url>
-          <line>111</line>
+          <line>285</line>
           <properties />
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Sources/src/Main.java</url>
+          <line>286</line>
+          <properties />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="16" />
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Chromosome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Mutation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4675">
-          <caret line="292" selection-start-line="292" selection-end-line="292" />
-          <folding>
-            <element signature="e#10359#10360#0" expanded="true" />
-            <element signature="e#10396#10397#0" expanded="true" />
-            <element signature="e#10435#10436#0" expanded="true" />
-            <element signature="e#10471#10472#0" expanded="true" />
-            <element signature="e#11401#11402#0" expanded="true" />
-            <element signature="e#11429#11430#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Chromosome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Mutation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5049">
-          <caret line="297" column="25" selection-start-line="297" selection-start-column="25" selection-end-line="297" selection-end-column="25" />
-          <folding>
-            <element signature="e#10359#10360#0" expanded="true" />
-            <element signature="e#10396#10397#0" expanded="true" />
-            <element signature="e#10435#10436#0" expanded="true" />
-            <element signature="e#10471#10472#0" expanded="true" />
-            <element signature="e#11401#11402#0" expanded="true" />
-            <element signature="e#11429#11430#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4726">
@@ -468,12 +328,8 @@
         <state relative-caret-position="5049">
           <caret line="297" column="25" lean-forward="true" selection-start-line="297" selection-start-column="25" selection-end-line="297" selection-end-column="25" />
           <folding>
-            <element signature="e#10359#10360#0" expanded="true" />
-            <element signature="e#10396#10397#0" expanded="true" />
-            <element signature="e#10435#10436#0" expanded="true" />
-            <element signature="e#10471#10472#0" expanded="true" />
-            <element signature="e#11401#11402#0" expanded="true" />
-            <element signature="e#11429#11430#0" expanded="true" />
+            <element signature="e#11497#11498#0" expanded="true" />
+            <element signature="e#11534#11535#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -521,12 +377,8 @@
         <state relative-caret-position="1887">
           <caret line="111" column="43" lean-forward="true" selection-start-line="111" selection-start-column="43" selection-end-line="111" selection-end-column="43" />
           <folding>
-            <element signature="e#10359#10360#0" expanded="true" />
-            <element signature="e#10396#10397#0" expanded="true" />
-            <element signature="e#10435#10436#0" expanded="true" />
-            <element signature="e#10471#10472#0" expanded="true" />
-            <element signature="e#11401#11402#0" expanded="true" />
-            <element signature="e#11429#11430#0" expanded="true" />
+            <element signature="e#11497#11498#0" expanded="true" />
+            <element signature="e#11534#11535#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -574,12 +426,8 @@
         <state relative-caret-position="4029">
           <caret line="254" column="17" selection-start-line="254" selection-start-column="17" selection-end-line="254" selection-end-column="17" />
           <folding>
-            <element signature="e#10359#10360#0" expanded="true" />
-            <element signature="e#10396#10397#0" expanded="true" />
-            <element signature="e#10435#10436#0" expanded="true" />
-            <element signature="e#10471#10472#0" expanded="true" />
-            <element signature="e#11401#11402#0" expanded="true" />
-            <element signature="e#11429#11430#0" expanded="true" />
+            <element signature="e#11497#11498#0" expanded="true" />
+            <element signature="e#11534#11535#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -652,31 +500,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1124">
-          <caret line="3770" selection-start-line="3770" selection-end-line="3770" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/layout/Region.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="948" column="37" selection-start-line="948" selection-start-column="37" selection-end-line="948" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/event/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="198" selection-start-line="198" selection-end-line="198" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/Scene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="2494" selection-start-line="2494" selection-end-line="2494" />
         </state>
       </provider>
     </entry>
@@ -694,26 +521,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sources/src/Model/Fitness.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="391">
           <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
         </state>
       </provider>
@@ -725,17 +535,157 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/event/EventType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="157" selection-start-line="157" selection-end-line="157" />
+          <folding>
+            <element signature="e#4603#4604#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="8413" selection-start-line="8413" selection-end-line="8413" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/control/Button.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/beans/property/BooleanPropertyBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+          <folding>
+            <element signature="e#3921#3922#0" expanded="true" />
+            <element signature="e#3962#3963#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/control/ButtonBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="168" selection-start-line="168" selection-end-line="168" />
+          <folding>
+            <element signature="e#5979#5980#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/scene/control/behavior/ButtonBehavior.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/scene/control/skin/BehaviorSkinBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/event/CompositeEventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="e#6461#6462#0" expanded="true" />
+            <element signature="e#6511#6512#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/event/EventHandlerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="190" selection-start-line="190" selection-end-line="190" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/event/CompositeEventDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/event/BasicEventDispatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/event/EventDispatchChainImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/com/sun/javafx/event/EventUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/event/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
+          <folding>
+            <element signature="e#4362#4363#0" expanded="true" />
+            <element signature="e#4393#4394#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-151">
+          <caret line="2494" selection-start-line="2494" selection-end-line="2494" />
+          <folding>
+            <element signature="e#66617#66618#0" expanded="true" />
+            <element signature="e#66663#66664#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/src/Model/AllBoards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/src/Model/GeneticAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Sources/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="285" column="42" selection-start-line="285" selection-start-column="42" selection-end-line="285" selection-end-column="42" />
+        <state relative-caret-position="257">
+          <caret line="296" selection-start-line="296" selection-end-line="296" />
           <folding>
-            <element signature="e#10359#10360#0" expanded="true" />
-            <element signature="e#10396#10397#0" expanded="true" />
-            <element signature="e#10435#10436#0" expanded="true" />
-            <element signature="e#10471#10472#0" expanded="true" />
-            <element signature="e#11401#11402#0" expanded="true" />
-            <element signature="e#11429#11430#0" expanded="true" />
+            <element signature="e#11497#11498#0" expanded="true" />
+            <element signature="e#11534#11535#0" expanded="true" />
           </folding>
         </state>
       </provider>

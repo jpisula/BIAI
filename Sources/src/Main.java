@@ -284,6 +284,27 @@ public class Main extends Application {
                 }
             } else if(comVsComCheck.isSelected()) {
                 // Tu kod z gry com vs com
+                generujWejscie();
+                GeneticAlgorithm geneticAlgorithm1 = new GeneticAlgorithm(wejscie);
+                try {
+                    String board = geneticAlgorithm1.start();
+                    dodajRuchNaPlansze(board);
+                    if (sprawdzWygrana(size)) return;
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
+                    alert.showAndWait();
+                }
+
+                generujWejscie();
+                GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
+                try {
+                    String board = geneticAlgorithm.start();
+                    dodajRuchNaPlansze(board);
+                    if (sprawdzWygrana(size)) return;
+                } catch (Exception e) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
+                    alert.showAndWait();
+                }
             }
         }
 
