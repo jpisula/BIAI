@@ -34,10 +34,9 @@ public class Main extends Application {
     private String wejscie      = "";
     private int noMove          = 0;
     private boolean wygrana     = false;
-    // zmienne potrzebne do checkboxa
-    private boolean chck1       = false;
-    private boolean chck2       = false;
 
+    private boolean mode = false;
+    private boolean mode2 = true;
     private RadioButton comVsComCheck;
     private RadioButton playerVsComCheck;
 
@@ -54,7 +53,7 @@ public class Main extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Text welcomeText = new Text("Welcome in our TicTacToe Game!");
+        Text welcomeText = new Text("Welcome in TicTacToe Game!");
         welcomeText.setId("welcomeText");
         welcomeText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(welcomeText, 0, 0, 2, 1);
@@ -66,12 +65,12 @@ public class Main extends Application {
 
         playerVsComCheck = new RadioButton();
         playerVsComCheck.setToggleGroup(group);
-        playerVsComCheck.setText("Player VS. Computer");
+        playerVsComCheck.setText("Player vs Computer");
         playerVsComCheck.setSelected(true);
 
         comVsComCheck = new RadioButton();
         comVsComCheck.setToggleGroup(group);
-        comVsComCheck.setText("Computer VS. Computer");
+        comVsComCheck.setText("Computer vs Computer");
         grid.add(playerVsComCheck, 0, 2);
         grid.add(comVsComCheck, 1, 2);
 
@@ -192,7 +191,7 @@ public class Main extends Application {
         wejscie += iloscRuchow;
     }
 
-    public boolean GenerujRuch(int comMove) {
+    public boolean GenerujRuch(int comMove, char numb) {
 
         int ktory = 0;
         for (int i = 0; i < size; i++) {
@@ -202,7 +201,7 @@ public class Main extends Application {
                     if (cell[i][j].getPlayer() != ' ') {
                         return false;
                     } else {
-                        cell[i][j].setPlayer('1');
+                        cell[i][j].setPlayer(numb);
                         generujWejscie();
                         return true;
                     }
@@ -215,7 +214,7 @@ public class Main extends Application {
     public void dodajRuchNaPlansze(String board) {
         for (int i = 0; i < size * size; i++) {
             if (board.charAt(i) != wejscie.charAt(i))
-                GenerujRuch(i + 1);
+                GenerujRuch(i + 1, board.charAt(i));
         }
     }
 
@@ -255,7 +254,7 @@ public class Main extends Application {
             });
         }
 
-        private void handleClick(int size) { //dla trybu comp vs comp zmiany potrzebne w pliku Chromosome.java - wprowadzilem, ale trzeba potestowac
+        private void handleClick(int size) {
             if(playerVsComCheck.isSelected()) {
                 noMove++;
                 if (player == ' ' && currentPlayer != ' ') {
@@ -268,27 +267,36 @@ public class Main extends Application {
                     return;
 
                 GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
+                String temp = wejscie;
                 try {
-                    String board = geneticAlgorithm.start();
+                    mode = true;
+                    mode2 = true;
+                    String board = geneticAlgorithm.start(mode, mode2);
                     dodajRuchNaPlansze(board);
                     if (sprawdzWygrana(size)) return;
                 } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
                     alert.showAndWait();
                 }
 
             }
+            //trzeba cos zmienic bo nie dziala rysowanie kolejnych elementow na biezaco w while w handleClick. Jak bylo tak jak zrobiles to narysowal wszystko na samym koncu.
             if(comVsComCheck.isSelected()){  //------------ ROZGRYWKA KOMPUTER VS KOMPUTER, trzeba kliknąć aby rozpocząć rozgrywke comp vs comp
+                mode2 = false;
                 while(!sprawdzWygrana(size)){
                     generujWejscie();
                     GeneticAlgorithm alg1 = new GeneticAlgorithm(wejscie);
+                    String temp = wejscie;
                     try {
-                        String board = alg1.start();
+                        String board = alg1.start(mode, mode2);
+                        System.out.println(board); //temp
+                        mode = !mode;
                         dodajRuchNaPlansze(board);
-                        if (sprawdzWygrana(size)) return;
-                        TimeUnit.SECONDS.sleep(3);
+                        if (sprawdzWygrana(size))
+                            return;
+                        TimeUnit.SECONDS.sleep(1);
                     } catch (Exception e) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Something went wrong, try again. ", ButtonType.OK);
+                        Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
                         alert.showAndWait();
                     }
 

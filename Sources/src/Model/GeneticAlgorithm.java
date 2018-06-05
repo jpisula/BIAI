@@ -31,7 +31,7 @@ public class GeneticAlgorithm {
      * Metoda zarzadzajaca calym algorytmem genetycznym.
      * @return
      */
-    public String start() throws Exception {
+    public String start(boolean mode, boolean mode2) throws Exception {
         all.getAllBoards(); // tworzenie tablicy zawierajacej niecale 9000 kombinacji
         ArrayList<String> population = new ArrayList<>();
         //pobranie stringu, w ktorym jest aktualny stan planszy
@@ -40,7 +40,7 @@ public class GeneticAlgorithm {
 
         //petla tworzaca populacje chromosomow
         for (int i = 0; i < populationSize; i++) {
-            String chromosome = chrom.createChromosome(stateNumber); //metoda generujaca chromosom
+            String chromosome = chrom.createChromosome(stateNumber, mode, mode2); //metoda generujaca chromosom
             population.add(chromosome);//vector chromosomow
         }
         //zmniejszenie populacji o te najgorsze chromosomy
