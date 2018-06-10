@@ -76,8 +76,6 @@ public class Main extends Application {
 
         Button startBtn = new Button("Start Game");
         startBtn.setOnAction(e -> {
-//            chck1 = playerVsComCheck.isSelected();
-//            chck2 = comVsComCheck.isSelected();
             window.setScene(gameScene);
             });
         HBox hbBtn = new HBox(10);
@@ -291,13 +289,14 @@ public class Main extends Application {
                         String board = alg1.start(mode, mode2);
                         System.out.println(board); //temp
                         mode = !mode;
+                        //mode2 = !mode2;
                         dodajRuchNaPlansze(board);
                         if (sprawdzWygrana(size))
                             return;
                         TimeUnit.SECONDS.sleep(1);
                     } catch (Exception e) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
-                        alert.showAndWait();
+                        //Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                        //alert.showAndWait();
                     }
 
                 }

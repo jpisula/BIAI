@@ -48,6 +48,6 @@ public class GeneticAlgorithm {
 
         //ostateczny wynik - pierwsze 9 cyfr to stan planszy, ostatnia ilosc juz wypelnionych pol. Potrzebne do algorytmu.
         //w wywolanej metodzie nastepuje krzyzowanie, ocena chromosomow i wybor najlepszej opcji
-        return all.getBestBoard(population, fitness);
+        return all.getBestBoard(population, fitness, mode, mode2);
     }
 }

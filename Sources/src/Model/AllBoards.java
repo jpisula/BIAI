@@ -171,6 +171,26 @@ public class AllBoards {
                 if (fit.checkWinner(String.valueOf(getFirstBoard(nameS += ' '))))
                     return String.valueOf(getFirstBoard(nameS));
             }
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            nameS = "";
+            String data = list.get(i);
+            spaceIndex = data.indexOf(" ");
+
+            for (int j = 0; j < spaceIndex; j++) //wyodrebnienie "kolumn" stringa pobranego z listy
+                nameS += data.charAt(j); //strategia
+
+            //pobranie liczby zajetych pol
+            String temp = String.valueOf(getFirstBoard(nameS += ' '));
+            filled = String.valueOf(temp.charAt(9));
+            fields = Integer.parseInt(filled);
+
+            if ((grades.get(i) > numberMax)) { //wybranie strategii z najlepszymi liczbami
+                numberMax = grades.get(i);
+                nameMax = nameS;
+                nameMax += " ";
+            }
             //sprawdzenie czy nie ma sytuacji blokady
             if (fields > 2) {
                 int index = fit.checkBlockade(String.valueOf(getFirstBoard(nameS += ' ')));
@@ -198,7 +218,7 @@ public class AllBoards {
      * @param population
      * @return
      */
-    public String getBestBoard(ArrayList<String> population, Fitness fit) {
+    public String getBestBoard(ArrayList<String> population, Fitness fit, boolean mode, boolean mode2) {
         int ile = 0;
         ArrayList<String> list = new ArrayList<>(); //lista zawierajaca kolejne strategie wraz z przyznana iloscia punktow
         ArrayList<String> endingList = new ArrayList<>(); //skrocona wersja wczesniejszej listy. Zawiera strategie z juz zsumowanymi punktami
@@ -214,6 +234,8 @@ public class AllBoards {
             for (int i = 0; i < population.size(); i++) {
                 String chromosome = population.get(i); //pobranie chromosomu
                 int result = fit.checkGameState(getLastBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
+                if (mode && !mode2)
+                    result = 10 - result;
                 list.add(getStrategy(getFirstBoard(chromosome)) + " " + Integer.toString(result)); //lista zawirajaca strategie i ocene ostatecznego wyniku
             }
 
