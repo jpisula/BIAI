@@ -39,6 +39,7 @@ public class Main extends Application {
     private boolean mode2 = true;
     private RadioButton comVsComCheck;
     private RadioButton playerVsComCheck;
+    private GridPane gameGrid;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -85,7 +86,7 @@ public class Main extends Application {
 
         //--- GAME SCENE GRID PANE ---//
         GridPane mainGameGrid = new GridPane();
-        GridPane gameGrid = new GridPane();
+        gameGrid = new GridPane();
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -99,7 +100,7 @@ public class Main extends Application {
         borderPane.setCenter(gameGrid);
         borderPane.setTop(statusMsg);
 
-        mainGameGrid.add(borderPane, 0, 0);
+
 
         Button endGameBtn = new Button("End Game");
         endGameBtn.setOnAction(e -> {
@@ -117,7 +118,15 @@ public class Main extends Application {
                     cell[i][j].setNullPlayer();
                 }
             }
+            statusMsg.setText("O must play");
+            borderPane.setCenter(gameGrid);
+            borderPane.setTop(statusMsg);
+            currentPlayer = '2';
+            wygrana = false;
+            noMove = 0;
+            wejscie ="";
         });
+        mainGameGrid.add(borderPane, 0, 0);
         mainGameGrid.add(endGameBtn, 0, 1);
 
         //--- SETTING SCENES ---//
@@ -218,6 +227,7 @@ public class Main extends Application {
 
     public boolean sprawdzWygrana(int size) {
         if (hasWon(currentPlayer, size)) {
+            gameGrid = new GridPane();
             if (currentPlayer == '1')
                 statusMsg.setText("X won!");
             else
