@@ -234,8 +234,8 @@ public class AllBoards {
             for (int i = 0; i < population.size(); i++) {
                 String chromosome = population.get(i); //pobranie chromosomu
                 int result = fit.checkGameState(getLastBoard(chromosome)); //pobranie ostatniej strategii z chromosomu i wywolanie funkcji zwracajacej wynik
-                if (mode && !mode2)
-                    result = 10 - result;
+               // if (mode && !mode2)
+               //     result = 10 - result;
                 list.add(getStrategy(getFirstBoard(chromosome)) + " " + Integer.toString(result)); //lista zawirajaca strategie i ocene ostatecznego wyniku
             }
 

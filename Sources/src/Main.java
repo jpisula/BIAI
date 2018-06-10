@@ -297,7 +297,7 @@ public class Main extends Application {
                     String temp = wejscie;
                     try {
                         String board = alg1.start(mode, mode2);
-                        System.out.println(board); //temp
+                        System.out.println(board); //tempF
                         mode = !mode;
                         //mode2 = !mode2;
                         dodajRuchNaPlansze(board);
