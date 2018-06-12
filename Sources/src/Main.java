@@ -19,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends Application {
@@ -40,11 +41,15 @@ public class Main extends Application {
     private RadioButton comVsComCheck;
     private RadioButton playerVsComCheck;
     private GridPane gameGrid;
+    GridPane summaryGrid;
+    private Vector<String> moves;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         window = primaryStage;
+        moves = new Vector<>();
+        summaryGrid = new GridPane();
 
 
         //--- MAIN SCENE GRID PANE ---//
@@ -104,27 +109,93 @@ public class Main extends Application {
 
         Button endGameBtn = new Button("End Game");
         endGameBtn.setOnAction(e -> {
-            window.setScene(mainScene);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    cell[i][j] = new Cell(size);
-                    gameGrid.getChildren().clear();
+            if(playerVsComCheck.isSelected()) {
+                window.setScene(mainScene);
+                for (int i = 0; i < size; i++) {
+                    for (int j = 0; j < size; j++) {
+                        cell[i][j] = new Cell(size);
+                        gameGrid.getChildren().clear();
+                    }
                 }
-            }
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    cell[i][j] = new Cell(size);
-                    gameGrid.add(cell[i][j], j, i);
-                    cell[i][j].setNullPlayer();
+                for (int i = 0; i < size; i++) {
+                    for (int j = 0; j < size; j++) {
+                        cell[i][j] = new Cell(size);
+                        gameGrid.add(cell[i][j], j, i);
+                        cell[i][j].setNullPlayer();
+                    }
                 }
+                statusMsg.setText("O must play");
+                borderPane.setCenter(gameGrid);
+                borderPane.setTop(statusMsg);
+                currentPlayer = '2';
+                wygrana = false;
+                noMove = 0;
+                wejscie = "";
+                mode = false;
+                mode2 = true;
+            } else {
+                //dodanie okna podsumowania --------------------------------------------------------------------------
+                summaryGrid.getChildren().clear();
+                summaryGrid.setPadding(new Insets(5, 5, 0, 10));
+                Text summaryText = new Text("Summary of Computer vs. Computer mode:");
+                summaryText.setId("summaryText");
+                summaryText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 14));
+                summaryGrid.add(summaryText, 0, 0, 2, 1);
+
+                String text = "\n";
+                System.out.println(moves.size());
+                String temp = "";
+                for(int r = 0; r < moves.size(); r++) {
+                    text += "Move number " + (r+1) + ":\n";
+                    temp = moves.get(r);
+                    for (int i = 0; i < size*size; i++) {
+                        if((i%3 == 0) && (i > 1)) text += "\n";
+                        //System.out.println(moves.get(i));
+                        if(temp.charAt(i) == '1')
+                            text += "X" + "\t";
+                        else if(temp.charAt(i) == '2')
+                            text += "O" + "\t";
+                        else
+                            text += "-" + "\t";
+                    }
+                    text += "\n";
+                }
+                Text movesText = new Text(text);
+                movesText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 12));
+                summaryGrid.add(movesText, 0, 1, 1, 1);
+
+                Button mainMenuBtn = new Button("Back To Main Menu");
+                mainMenuBtn.setOnMouseClicked(f ->{
+                    window.setScene(mainScene);
+
+                });
+                summaryGrid.add(mainMenuBtn, 3, 1, 1, 1);
+
+                for (int i = 0; i < size; i++) {
+                    for (int j = 0; j < size; j++) {
+                        cell[i][j] = new Cell(size);
+                        gameGrid.getChildren().clear();
+                    }
+                }
+                for (int i = 0; i < size; i++) {
+                    for (int j = 0; j < size; j++) {
+                        cell[i][j] = new Cell(size);
+                        gameGrid.add(cell[i][j], j, i);
+                        cell[i][j].setNullPlayer();
+                    }
+                }
+                statusMsg.setText("O must play");
+                borderPane.setCenter(gameGrid);
+                borderPane.setTop(statusMsg);
+                currentPlayer = '2';
+                wygrana = false;
+                noMove = 0;
+                wejscie = "";
+                mode = false;
+                mode2 = false;
+                moves.clear();
+                window.setScene(scoreScene);
             }
-            statusMsg.setText("O must play");
-            borderPane.setCenter(gameGrid);
-            borderPane.setTop(statusMsg);
-            currentPlayer = '2';
-            wygrana = false;
-            noMove = 0;
-            wejscie ="";
         });
         mainGameGrid.add(borderPane, 0, 0);
         mainGameGrid.add(endGameBtn, 0, 1);
@@ -136,6 +207,8 @@ public class Main extends Application {
                 (Main.class.getResource("MainMenuStyles.css").toExternalForm());
 
         gameScene = new Scene(mainGameGrid, 600, 600);
+
+        scoreScene = new Scene(summaryGrid, 600, 600);
 
 
         window.setScene(mainScene);
@@ -257,47 +330,61 @@ public class Main extends Application {
             setStyle("-fx-border-color: black");
             this.setPrefSize(700 / size, 700 / size);
             this.setOnMouseClicked(e -> {
-                if (!wygrana)
-                    handleClick(size);
+                if (!wygrana) {
+
+                    if (comVsComCheck.isSelected()) {
+                        mode2 = false;
+
+                        while (!sprawdzWygrana(size)) {
+                            handleClick(size);
+                        }
+                    } else {
+                        handleClick(size);
+                    }
+                }
             });
         }
 
-        private void handleClick(int size) {
-            if(playerVsComCheck.isSelected()) {
-                noMove++;
-                if (player == ' ' && currentPlayer != ' ') {
-                    setPlayer(currentPlayer);
-                    generujWejscie();
+
+            private void handleClick ( int size){
+                if (playerVsComCheck.isSelected()) {
+                    noMove++;
+                    if (player == ' ' && currentPlayer != ' ') {
+                        setPlayer(currentPlayer);
+                        generujWejscie();
+                    }
+
+                    //tutaj sprawdzanie wygranej
+                    if (sprawdzWygrana(size))
+                        return;
+
+
+
+                    GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
+                    String temp = wejscie;
+                    try {
+
+                        mode = true;
+                        mode2 = true;
+                        String board = geneticAlgorithm.start(mode, mode2);
+                        dodajRuchNaPlansze(board);
+                        if (sprawdzWygrana(size)) return;
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                        alert.showAndWait();
+                    }
+
                 }
+                //trzeba cos zmienic bo nie dziala rysowanie kolejnych elementow na biezaco w while w handleClick. Jak bylo tak jak zrobiles to narysowal wszystko na samym koncu.
+                if (comVsComCheck.isSelected()) {  //------------ ROZGRYWKA KOMPUTER VS KOMPUTER, trzeba kliknąć aby rozpocząć rozgrywke comp vs comp
 
-                //tutaj sprawdzanie wygranej
-                if (sprawdzWygrana(size))
-                    return;
-
-                GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
-                String temp = wejscie;
-                try {
-                    mode = true;
-                    mode2 = true;
-                    String board = geneticAlgorithm.start(mode, mode2);
-                    dodajRuchNaPlansze(board);
-                    if (sprawdzWygrana(size)) return;
-                } catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
-                    alert.showAndWait();
-                }
-
-            }
-            //trzeba cos zmienic bo nie dziala rysowanie kolejnych elementow na biezaco w while w handleClick. Jak bylo tak jak zrobiles to narysowal wszystko na samym koncu.
-            if(comVsComCheck.isSelected()){  //------------ ROZGRYWKA KOMPUTER VS KOMPUTER, trzeba kliknąć aby rozpocząć rozgrywke comp vs comp
-                mode2 = false;
-                while(!sprawdzWygrana(size)){
                     generujWejscie();
                     GeneticAlgorithm alg1 = new GeneticAlgorithm(wejscie);
                     String temp = wejscie;
                     try {
                         String board = alg1.start(mode, mode2);
                         System.out.println(board); //tempF
+                        moves.addElement(board);
                         mode = !mode;
                         //mode2 = !mode2;
                         dodajRuchNaPlansze(board);
@@ -305,48 +392,50 @@ public class Main extends Application {
                             return;
                         TimeUnit.SECONDS.sleep(1);
                     } catch (Exception e) {
+                        System.out.println(e);
                         //Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
                         //alert.showAndWait();
                     }
 
                 }
             }
-        }
 
-        public char getPlayer() {
-            return player;
-        }
 
-        public void setNullPlayer() {
-            player = ' ';
-        }
+            public char getPlayer () {
+                return player;
+            }
 
-        public void setPlayer(char c) {
-            player = c;
-            if (player == '1') {
-                Line line1 = new Line(10, 10, this.getWidth() - 10, this.getHeight() - 10);
-                line1.endXProperty().bind(this.widthProperty().subtract(10));
-                line1.endYProperty().bind(this.heightProperty().subtract(10));
+            public void setNullPlayer () {
+                player = ' ';
+            }
 
-                Line line2 = new Line(10, this.getHeight() - 10, this.getWidth() - 10, 10);
-                line2.endXProperty().bind(this.widthProperty().subtract(10));
-                line2.startYProperty().bind(this.heightProperty().subtract(10));
+            public void setPlayer ( char c){
+                player = c;
+                if (player == '1') {
+                    Line line1 = new Line(10, 10, this.getWidth() - 10, this.getHeight() - 10);
+                    line1.endXProperty().bind(this.widthProperty().subtract(10));
+                    line1.endYProperty().bind(this.heightProperty().subtract(10));
 
-                getChildren().addAll(line1, line2);
-            } else if (player == '2') {
-                Ellipse ellipse = new Ellipse(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2 - 10, this.getHeight() / 2 - 10);
+                    Line line2 = new Line(10, this.getHeight() - 10, this.getWidth() - 10, 10);
+                    line2.endXProperty().bind(this.widthProperty().subtract(10));
+                    line2.startYProperty().bind(this.heightProperty().subtract(10));
 
-                ellipse.centerXProperty().bind(this.widthProperty().divide(2));
-                ellipse.centerYProperty().bind(this.heightProperty().divide(2));
-                ellipse.radiusXProperty().bind(this.widthProperty().divide(2).subtract(10));
-                ellipse.radiusYProperty().bind(this.heightProperty().divide(2).subtract(10));
-                ellipse.setStroke(Color.BLACK);
-                ellipse.setFill(Color.color(1, 1, 1, 1));
+                    getChildren().addAll(line1, line2);
+                } else if (player == '2') {
+                    Ellipse ellipse = new Ellipse(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2 - 10, this.getHeight() / 2 - 10);
 
-                getChildren().add(ellipse);
+                    ellipse.centerXProperty().bind(this.widthProperty().divide(2));
+                    ellipse.centerYProperty().bind(this.heightProperty().divide(2));
+                    ellipse.radiusXProperty().bind(this.widthProperty().divide(2).subtract(10));
+                    ellipse.radiusYProperty().bind(this.heightProperty().divide(2).subtract(10));
+                    ellipse.setStroke(Color.BLACK);
+                    ellipse.setFill(Color.color(1, 1, 1, 1));
+
+                    getChildren().add(ellipse);
+                }
             }
         }
-    }
+
 
     public static void main(String[] args) {
         launch(args);
