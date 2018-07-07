@@ -18,7 +18,7 @@ public class GeneticAlgorithm {
      * Class constructor
      */
     public GeneticAlgorithm(String board) {
-        gameFields = 9;
+        gameFields = 9; //---------------------------------------------------KUBA
         rawFields = 3;
         RADIX = 10;
         actualBoard = board;
@@ -32,7 +32,12 @@ public class GeneticAlgorithm {
      * @return
      */
     public String start(boolean mode, boolean mode2) throws Exception {
+        //--------------------------------------------------------------------------------TIME KUBA
+        long startTime = System.currentTimeMillis();
         all.getAllBoards(); // tworzenie tablicy zawierajacej niecale 9000 kombinacji
+        long estimatedTime = System.currentTimeMillis() - startTime;
+        System.out.println("TIME: " + estimatedTime);
+        //--------------------------------------------------------------------------------TIME KUBA
         ArrayList<String> population = new ArrayList<>();
         //pobranie stringu, w ktorym jest aktualny stan planszy
         //pierwsze 9 cyfr to stan planszy, ostatnia ilosc wypelnionych pol
