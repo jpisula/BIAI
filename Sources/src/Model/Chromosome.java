@@ -93,7 +93,7 @@ public class Chromosome {
      * @param stateNumber
      * @return
      */
-    public String createChromosome(int stateNumber, boolean mode, boolean mode2) {
+    public String createChromosome(int stateNumber, boolean mode) {
         StringBuilder chromosome = new StringBuilder();
         char filledFields;
         ArrayList allBoards;
@@ -101,7 +101,7 @@ public class Chromosome {
         String actualState = (String) allBoards.get(stateNumber);
         filledFields = actualState.charAt(gameFields);
         //w zaleznosci od tryby gry tworzony jest poprawny chromosom
-        if (mode2) {
+        if (mode) {
             for (int i = 0; i < (gameFields - Character.getNumericValue(filledFields)); i += 2) {
                 int indexComputer = getNextComputerMove(stateNumber, allBoards);
                 int indexPlayer = getNextPlayerMove(indexComputer, allBoards);
@@ -110,38 +110,25 @@ public class Chromosome {
                 chromosome.append(Integer.toString(indexPlayer));
                 chromosome.append(' ');
                 stateNumber = indexPlayer;
-            }
-        } else if (!mode) {
-            for (int i = 0; i < (gameFields - Character.getNumericValue(filledFields)); i += 2) {
-                int indexComputer = getNextComputerMove(stateNumber, allBoards);
-
-                String temp = (String) allBoards.get(indexComputer);
-
-                int indexPlayer = getNextPlayerMove(indexComputer, allBoards);
-
-                String temp2 = (String) allBoards.get(indexPlayer);
-
-                chromosome.append(Integer.toString(indexComputer));
-                chromosome.append(' ');
-                chromosome.append(Integer.toString(indexPlayer));
-                chromosome.append(' ');
-                stateNumber = indexPlayer;
-                if ((gameFields - Character.getNumericValue(filledFields)) < (i+4)) { //potrzebne do trybu komputer vs komputer
-                    indexComputer = getNextComputerMove(stateNumber, allBoards);
-                    chromosome.append(Integer.toString(indexComputer));
-                    chromosome.append(' ');
-                    return (String.valueOf(chromosome).trim());
-                }
             }
         } else {
-            for (int i = 0; i < (gameFields - Character.getNumericValue(filledFields)); i += 2) {
-                int indexPlayer = getNextPlayerMove(stateNumber, allBoards);
-                int indexComputer = getNextComputerMove(indexPlayer, allBoards);
-                chromosome.append(Integer.toString(indexPlayer));
-                chromosome.append(' ');
+            if ((gameFields - Character.getNumericValue(filledFields)) < 2 ) {
+                int indexComputer = getNextComputerMove(stateNumber, allBoards);
                 chromosome.append(Integer.toString(indexComputer));
                 chromosome.append(' ');
-                stateNumber = indexComputer;
+            } else {
+                for (int i = 0; i < (gameFields - 1 - Character.getNumericValue(filledFields)); i += 2) {
+                    int indexComputer = getNextComputerMove(stateNumber, allBoards);
+                    int indexPlayer = getNextPlayerMove(indexComputer, allBoards);
+                    chromosome.append(Integer.toString(indexComputer));
+                    chromosome.append(' ');
+                    chromosome.append(Integer.toString(indexPlayer));
+                    chromosome.append(' ');
+                    stateNumber = indexPlayer;
+                }
+                int indexComputer = getNextComputerMove(stateNumber, allBoards);
+                chromosome.append(Integer.toString(indexComputer));
+                chromosome.append(' ');
             }
         }
 

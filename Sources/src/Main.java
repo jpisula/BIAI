@@ -36,8 +36,9 @@ public class Main extends Application {
     private int noMove          = 0;
     private boolean wygrana     = false;
 
-    private boolean mode = false;
-    private boolean mode2 = true;
+    private boolean mode = false, mode2 = false, change = false;
+    private int number0 = 9, changes = 0;
+    private String lastBoard = "";
     private RadioButton comVsComCheck;
     private RadioButton playerVsComCheck;
     private GridPane gameGrid;
@@ -132,7 +133,6 @@ public class Main extends Application {
                 noMove = 0;
                 wejscie = "";
                 mode = false;
-                mode2 = true;
             } else {
                 //dodanie okna podsumowania --------------------------------------------------------------------------
                 summaryGrid.getChildren().clear();
@@ -192,7 +192,6 @@ public class Main extends Application {
                 noMove = 0;
                 wejscie = "";
                 mode = false;
-                mode2 = false;
                 moves.clear();
                 window.setScene(scoreScene);
             }
@@ -333,7 +332,6 @@ public class Main extends Application {
                 if (!wygrana) {
 
                     if (comVsComCheck.isSelected()) {
-                        mode2 = false;
 
                         while (!sprawdzWygrana(size)) {
                             handleClick(size);
@@ -358,14 +356,12 @@ public class Main extends Application {
                     if (sprawdzWygrana(size))
                         return;
 
-
-
                     GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(wejscie);
                     String temp = wejscie;
                     try {
 
                         mode = true;
-                        mode2 = true;
+                        mode2 = false;
                         String board = geneticAlgorithm.start(mode, mode2);
                         dodajRuchNaPlansze(board);
                         if (sprawdzWygrana(size)) return;
@@ -377,24 +373,47 @@ public class Main extends Application {
                 }
                 //trzeba cos zmienic bo nie dziala rysowanie kolejnych elementow na biezaco w while w handleClick. Jak bylo tak jak zrobiles to narysowal wszystko na samym koncu.
                 if (comVsComCheck.isSelected()) {  //------------ ROZGRYWKA KOMPUTER VS KOMPUTER, trzeba kliknąć aby rozpocząć rozgrywke comp vs comp
-
+                    mode2 = true;
                     generujWejscie();
+                    System.out.println("Wejscie: " + wejscie);
                     GeneticAlgorithm alg1 = new GeneticAlgorithm(wejscie);
-                    String temp = wejscie;
+                    String board;
                     try {
-                        String board = alg1.start(mode, mode2);
-                        System.out.println(board); //tempF
-                        moves.addElement(board);
-                        mode = !mode;
-                        //mode2 = !mode2;
-                        dodajRuchNaPlansze(board);
+                        if (number0 == 1) {
+                            board = wejscie.replaceAll("0","2");
+                            board = board.replaceAll("8","9");
+                        } else {
+                            board = alg1.start(mode, mode2);
+                            System.out.println("Wyjscie: " +board);
+                            if (!mode && mode2) {
+                                String temp = board.substring(0, board.length() - 1);
+                                String filled = board.substring(board.length() - 1, board.length());
+                                temp = temp.replaceAll("1", "3");
+                                temp = temp.replaceAll("2", "4");
+                                temp = temp.replaceAll("3", "2");
+                                temp = temp.replaceAll("4", "1");
+                                temp = temp + filled;
+
+                                for (int k=0; k < 9; k++) {
+                                    if (wejscie.charAt(k) != board.charAt(k)) {
+                                        board = board.substring(0, k) + '2' + board.substring(k + 1);
+                                    }
+                                }
+
+                                System.out.println("Wyjscie po zmianie: " +board); //tempF
+                            }
+                        }
+
+                            moves.addElement(board);
+                            mode = !mode;
+                            mode2 = !mode2;
+                            number0--;
+                            dodajRuchNaPlansze(board);
                         if (sprawdzWygrana(size))
                             return;
-                        TimeUnit.SECONDS.sleep(1);
+                        //TimeUnit.SECONDS.sleep(1);
+
                     } catch (Exception e) {
-                        System.out.println(e);
-                        //Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
-                        //alert.showAndWait();
                     }
 
                 }

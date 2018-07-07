@@ -109,7 +109,6 @@ public class AllBoards {
      * @return
      */
     public String getFirstBoard(String strategy) {
-
         int index = strategy.indexOf(' ');
         String temp = "";
         for (int i = 0; i < index; i++) {
@@ -218,7 +217,7 @@ public class AllBoards {
      * @param population
      * @return
      */
-    public String getBestBoard(ArrayList<String> population, Fitness fit, boolean mode, boolean mode2) {
+    public String getBestBoard(ArrayList<String> population, Fitness fit, boolean mode) {
         int ile = 0;
         ArrayList<String> list = new ArrayList<>(); //lista zawierajaca kolejne strategie wraz z przyznana iloscia punktow
         ArrayList<String> endingList = new ArrayList<>(); //skrocona wersja wczesniejszej listy. Zawiera strategie z juz zsumowanymi punktami
